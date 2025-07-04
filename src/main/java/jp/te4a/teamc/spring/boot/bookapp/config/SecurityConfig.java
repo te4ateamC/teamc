@@ -39,10 +39,12 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/loginForm"))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/webjars/**", "/css/**").permitAll()
-                        .requestMatchers("/loginForm").permitAll()
+                        .requestMatchers("/login").permitAll()
                         .requestMatchers("/users").permitAll()
                         .requestMatchers("/users/create").permitAll()
                         .anyRequest().authenticated());
+
+                        
         return http.build();
     }
 }

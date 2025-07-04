@@ -15,12 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookBean {
-    @Id
-    @GeneratedValue
-    private Integer id;
     @Column(nullable=false)
     private String title;
-    private String writter;
+    @Column(nullable=false)
     private String publisher;
-    private Integer price;
+    @Column(nullable=false)
+    private String count;
+    @Column(nullable=false)
+    private String name;
+    @Column(nullable=false)
+    private String tel;
+    private Integer address;
 }
