@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 
-    @GetMapping(path = "loginForm")
-    String loginForm() {
-        return "loginForm";  // loginForm.jspを表示
+    @GetMapping(path = "login")
+    public String showLoginForm() {
+        return "Login";  // Login.jspを表示
     }
 
     @PostMapping(path = "post")

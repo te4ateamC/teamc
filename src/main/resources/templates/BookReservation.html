@@ -11,30 +11,32 @@
                 document.getElementById("reserveForm").reset();
             }
         </script>
+        <link rel="stylesheet" href="/src/main/resources/static/css/BookReservation.css">
     </head>
 
     <body>
         <h2>書籍を予約する</h2>
-        <form method="post" action="/post">
+        <p>※がある項目は必須入力です</p>
+        <form id="reserveForm" method="post" action="orderhistory.jsp">
             <table>
                 <tr>
-                    <td>書籍名（タイトル）:</td>
+                    <td>書籍名（タイトル）※:</td>
                     <td><input type="text" name="title" /></td>
                 </tr>
                 <tr>
-                    <td>出版社名：</td>
+                    <td>出版社名※：</td>
                     <td><input type="text" name="publisher" /></td>
                 </tr>
                 <tr>
-                    <td>冊数：</td>
+                    <td>冊数※：</td>
                     <td><input type="text" name="count" /></td>
                 </tr>
                 <tr>
-                    <td>お名前：</td>
+                    <td>お名前※：</td>
                     <td><input type="text" name="name" /></td>
                 </tr>
                 <tr>
-                    <td>電話番号:</td>
+                    <td>電話番号※:</td>
                     <td><input type="text" name="tel" /></td>
                 </tr>
                 <tr>

@@ -4,14 +4,18 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>書籍予約確認</title>
+        <title>書籍予約フォーム</title>
+        <script>
+            // クリアボタンでフォームをリセット
+            function clearForm() {
+                document.getElementById("reserveForm").reset();
+            }
+        </script>
+        <link rel="stylesheet" href="/src/main/resources/static/css/Nortification.css">
     </head>
 
     <body>
-        <h2>ご予約が完了しました！</h2>
-        <p>・ご予約内容の確認の連絡をSMSで通知いたしました。</p>
-        <p>・後日、入荷した際に金額などの情報を通知いたします</p>
-        <h2>ご予約内容</h2>
+        <h2>書籍を予約する</h2>
         <form method="post" action="/post">
             <table>
                 <tr>
@@ -39,7 +43,8 @@
                     <td><input type="text" name="address" /></td>
                 </tr>
             </table>
-            <button type="submit">予約画面に戻る</button>
+            <button type="submit">予約する</button>
+            <button type="button" onclick="clearForm()">入力クリア</button>
         </form>
     </body>
 

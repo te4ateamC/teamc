@@ -29,7 +29,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.formLogin(login -> login
+        http //セキュリティ無効化
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+            .csrf(csrf -> csrf.disable());
+        return http.build();
+        /*http.formLogin(login -> login
                 .loginProcessingUrl("/login")
                 .loginPage("/loginForm")
                 .defaultSuccessUrl("/books", true)
@@ -45,6 +49,6 @@ public class SecurityConfig {
                         .anyRequest().authenticated());
 
                         
-        return http.build();
+        return http.build(); */
     }
 }

@@ -22,7 +22,7 @@ String amount = request.getParameter("amount");
     <body>
         <button type="button" onclick="location.href='logout.jsp'">ログアウト</button>
         <h2>注文履歴</h2>
-        <form method="post" action="reserveappro.jsp">
+        <form method="post" action="/post">
             <table border="1" cellpadding="5" cellspacing="0">
                 <tr>
                     <th>書籍名（タイトル）</th>
@@ -34,21 +34,6 @@ String amount = request.getParameter("amount");
                     <th>ISBNコード</th>
                     <th>承認日時</th>
                     <th>金額</th>
-                    <td>
-                        <input type="text" name="amount" value="<%= amount %>" />
-                    </td>
-            
-                    <td>
-                            String approvalStatus = request.getParameter("approvalStatus");
-                            if (approvalStatus == null || approvalStatus.isEmpty()) {
-                                approvalStatus = "未承認";
-                            }
-                        <span><%= approvalStatus %></span>
-                    </td>
-            
-                    <td>
-                        <button type="submit">承認する</button>
-                    </td>
                 </tr>
                 <tr>
                     <td><%= title %></td>
@@ -62,6 +47,7 @@ String amount = request.getParameter("amount");
                     <td><%= amount %></td>
                   </tr>
             </table>
+            <button type="submit">承認する</button>
         </form>
     </body>
 
