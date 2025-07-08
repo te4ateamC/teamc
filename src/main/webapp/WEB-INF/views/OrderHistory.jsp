@@ -22,7 +22,7 @@ String amount = request.getParameter("amount");
     <body>
         <button type="button" onclick="location.href='logout.jsp'">ログアウト</button>
         <h2>注文履歴</h2>
-        <form method="post" action="reserveappro.jsp">
+        <form method="post" action="reserveappro.html">
             <table border="1" cellpadding="5" cellspacing="0">
                 <tr>
                     <th>書籍名（タイトル）</th>
