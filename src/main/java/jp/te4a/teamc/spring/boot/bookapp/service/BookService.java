@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.te4a.teamc.spring.boot.bookapp.bean.BookBean;
+import jp.te4a.teamc.spring.boot.bookapp.bean.OrderBean;
 import jp.te4a.teamc.spring.boot.bookapp.form.BookForm;
 import jp.te4a.teamc.spring.boot.bookapp.repository.BookRepository;
 
@@ -18,27 +18,27 @@ public class BookService {
     BookRepository bookRepository;
 
     public BookForm create(BookForm bookForm) {
-        BookBean bookBean = new BookBean();
+        OrderBean bookBean = new OrderBean();
         BeanUtils.copyProperties(bookForm, bookBean);
         bookRepository.save(bookBean);
         return bookForm;
     }
 
     public BookForm update(BookForm bookForm) {
-        BookBean bookBean = new BookBean();
+        OrderBean bookBean = new OrderBean();
         BeanUtils.copyProperties(bookForm, bookBean);
         bookRepository.save(bookBean);
         return bookForm;
     }
 
-    public void delete(Integer id) {
+    public void delete(String id) {
         bookRepository.deleteById(id);
     }
 
     public List<BookForm> findAll() {
-        List<BookBean> beanList = bookRepository.findAll();
+        List<OrderBean> beanList = bookRepository.findAll();
         List<BookForm> formList = new ArrayList<BookForm>();
-        for (BookBean bookBean : beanList) {
+        for (OrderBean bookBean : beanList) {
             BookForm bookForm = new BookForm();
             BeanUtils.copyProperties(bookBean, bookForm);
             formList.add(bookForm);
@@ -46,7 +46,7 @@ public class BookService {
         return formList;
     }
 
-    public BookForm findOne(Integer id) {
+    public BookForm findOne(String id) {
         BookForm bookForm = new BookForm();
         bookRepository.findById(id).ifPresent(bookBean -> {
             BeanUtils.copyProperties(bookBean, bookForm);
@@ -55,7 +55,7 @@ public class BookService {
     }
 
     public BookForm save(BookForm bookForm) {
-        BookBean bookBean = new BookBean();
+        OrderBean bookBean = new OrderBean();
         BeanUtils.copyProperties(bookForm, bookBean);
         bookRepository.save(bookBean);
         return bookForm;

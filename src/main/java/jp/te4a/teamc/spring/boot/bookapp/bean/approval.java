@@ -2,20 +2,18 @@ package jp.te4a.teamc.spring.boot.bookapp.bean;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="")
+@Table(name="approval")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdrBean {
+public class approval {
     @Column(nullable=false)
     private String title;
     @Column(nullable=false)
@@ -28,8 +26,8 @@ public class OrdrBean {
     private String tel;
     private Integer address;
     @Column (nullable=false)
-    @PrimaryKeyJoinColumn
-    private String code;
+    @Id
+    private String ISNBcode;
     private String date;
     private String many;
 }

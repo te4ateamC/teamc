@@ -9,17 +9,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="order")
+@Table(name="nortificatoin")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderBean {
+public class Nortification {
     @Column(nullable=false)
     private String title;
     @Column(nullable=false)
     private String publisher;
     @Column(nullable=false)
-    private Integer count;
+    private String count;
     @Column(nullable=false)
     private String name;
     @Column(nullable=false)
@@ -29,5 +29,5 @@ public class OrderBean {
     @Id
     private String ISNBcode;
     private String date;
-    private Integer price;
+    private String many;
 }
