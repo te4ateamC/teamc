@@ -100,6 +100,6 @@ public class BookReservationController {
         model.addAttribute("address", address);
 
         // 予約完了画面へ
-        return "reserveComplete";  // JSP: /WEB-INF/views/reserveComplete.jsp
+        return "Confirmation";  // Confirmation.htmlへ
     }
 }

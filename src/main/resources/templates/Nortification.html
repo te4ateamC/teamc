@@ -18,33 +18,34 @@
         <h2>書籍を予約する</h2>
         <form method="post" action="/post">
             <table>
+                <p class="hissu">*がある項目は必須入力です</p>
                 <tr>
-                    <td>書籍名（タイトル）:</td>
-                    <td><input type="text" name="title" /></td>
+                    <td class="koumoku">書籍名（タイトル）:</td>
+                    <td><input type="text" name="title" class="nyuuryoku"/></td>
                 </tr>
                 <tr>
-                    <td>出版社名：</td>
-                    <td><input type="text" name="publisher" /></td>
+                    <td class="koumoku">出版社名：</td>
+                    <td><input type="text" name="publisher" class="nyuuryoku" /></td>
                 </tr>
                 <tr>
-                    <td>冊数：</td>
-                    <td><input type="text" name="count" /></td>
+                    <td class="koumoku">冊数：</td>
+                    <td><input type="text" name="count" class="sassuu"/></td>
                 </tr>
                 <tr>
-                    <td>お名前：</td>
-                    <td><input type="text" name="name" /></td>
+                    <td class="koumoku">お名前：</td>
+                    <td><input type="text" name="name" class="nyuuryoku"/></td>
                 </tr>
                 <tr>
-                    <td>電話番号:</td>
-                    <td><input type="text" name="tel" /></td>
+                    <td class="koumoku">電話番号:</td>
+                    <td><input type="text" name="tel" class="nyuuryoku" /></td>
                 </tr>
                 <tr>
-                    <td>メールアドレス：</td>
-                    <td><input type="text" name="address" /></td>
+                    <td class="koumoku">メールアドレス：</td>
+                    <td><input type="text" name="address" class="nyuuryoku"/></td>
                 </tr>
             </table>
-            <button type="submit">予約する</button>
-            <button type="button" onclick="clearForm()">入力クリア</button>
+            <button type="submit" class="yoyaku">予約する</button>
+            <button type="button" onclick="clearForm()" class="clear">入力クリア</button>
         </form>
     </body>
 

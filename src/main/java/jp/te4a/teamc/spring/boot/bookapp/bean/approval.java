@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class approval {
+public class Approval {
     @Column(nullable=false)
     private String title;
     @Column(nullable=false)
@@ -22,12 +22,8 @@ public class approval {
     private String count;
     @Column(nullable=false)
     private String name;
-    @Column(nullable=false)
-    private String tel;
-    private Integer address;
     @Column (nullable=false)
     @Id
-    private String ISNBcode;
-    private String date;
-    private String many;
+    private String ISBNcode;
+    private String money;
 }

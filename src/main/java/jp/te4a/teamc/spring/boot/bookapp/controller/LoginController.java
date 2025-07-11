@@ -2,17 +2,6 @@ package jp.te4a.teamc.spring.boot.bookapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-/*
-@Controller
-public class LoginController {
-    @GetMapping(path = "loginForm")
-    String loginForm() {
-        return "loginForm";
-    }
-}
-*/
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 
-    @GetMapping(path = "login")
+    @GetMapping("/login")
     public String showLoginForm() {
-        return "Login";  // Login.jspを表示
+        return "Login";  // Login.htmlを表示
+    }
+    @GetMapping("/order-history")
+    public String showOrderHistory() {
+        return "OrderHistory"; // OrderHistory.html を表示
     }
 
-    @PostMapping(path = "post")
+    @PostMapping("/login")
     String login(@RequestParam String user, @RequestParam String password, Model model) {
         // 仮の認証処理
         if ("admin".equals(user) && "admin".equals(password)) {
@@ -33,6 +26,6 @@ public class LoginController {
         }
         // 認証失敗したらエラーメッセージをセットしてログインフォームに戻る
         model.addAttribute("errorMessage", "ユーザIDかパスワードが違います");
-        return "loginForm";
+        return "Login";
     }
 }

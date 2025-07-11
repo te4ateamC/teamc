@@ -14,18 +14,18 @@
 
     <body>
         <h2>ログイン画面</h2>
-        <form method="post" action="/post">
+        <form method="post" action="/login" th:action="@{/login}">
             <table>
                 <tr>
-                    <td>ユーザID:</td>
-                    <td><input type="text" name="user" /></td>
+                    <td class="ユーザID">ユーザID:</td>
+                    <td><input type="text" name="user" class="textbox"/></td>
                 </tr>
                 <tr>
-                    <td>パスワード：</td>
-                    <td><input type="password" name="password" /></td>
+                    <td class="パスワード">パスワード：</td>
+                    <td><input type="password" name="password" class="textbox"/></td>
                 </tr>
             </table>
-            <button type="submit">ログイン</button>
+            <button type="submit" class="Login">ログイン</button>
         </form>
     </body>
 

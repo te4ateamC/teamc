@@ -29,10 +29,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http //セキュリティ無効化
+        /*http //セキュリティ無効化
             .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
             .csrf(csrf -> csrf.disable());
-        return http.build();
+        return http.build();*/
         /*http.formLogin(login -> login
                 .loginProcessingUrl("/login")
                 .loginPage("/loginForm")
@@ -49,6 +49,28 @@ public class SecurityConfig {
                         .anyRequest().authenticated());
 
                         
-        return http.build(); */
+        return http.build();*/
+
+        http
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/css/**", "/login", "/loginForm").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(login -> login
+                .loginPage("/loginForm") // login.htmlを /loginForm にマッピング
+                .loginProcessingUrl("/login") // フォームのaction先
+                .usernameParameter("user")    // HTMLのname="user"
+                .passwordParameter("password")// HTMLのname="password"
+                .defaultSuccessUrl("/order-history", true) // ✅ログイン後の遷移先
+                .failureUrl("/loginForm?error")
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/loginForm?logout")
+                .permitAll()
+            )
+            .csrf(csrf -> csrf.disable());
+
+        return http.build();
     }
 }
