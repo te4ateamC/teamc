@@ -14,62 +14,45 @@
     <table >
         <tr>
             <!-- 書籍名 -->
-            <td><input type="text" name="title" value="<%= title %>"></td>
+            <td><input type="text" name="title" id="title"></td>
         
             <!-- 出版社 -->
-            <td><input type="text" name="publisher" value="<%= publisher %>"></td>
+            <td><input type="text" name="publisher" id="publisher"></td>
         
             <!-- 冊数 -->
-            <td><input type="text" name="count" value="<%= count %>"></td>
+            <td><input type="text" name="count" id="count"></td>
         
-            <!-- 名前（表示のみ） -->
-            <td><%= name %></td>
+            <td id="name"></td>
+            <td id="tel"></td>
+            <td id="address"></td>
+            <td id="ISBNcode"></td>
+            <td id="approvalDate"></td>
+            <td id="amount"></td>
+            <td id="approvalStatus"></td>
         
-            <!-- 電話番号（表示のみ） -->
-            <td><%= tel %></td>
-        
-            <!-- メールアドレス（表示のみ） -->
-            <td><%= address %></td>
-        
-            <!-- ISBNコード（表示のみ） -->
-            <td><%= ISBNcode %></td>
-        
-            <!-- 承認日時（表示のみ） -->
-            <td><%= approvalDate %></td>
-        
-            <!-- 金額（表示のみ） -->
-            <td><%= amount %></td>
-        
-            <!-- 承認状況（表示のみ） -->
-            <td><%= approvalStatus %></td>
-        
-            <!-- 承認ボタン -->
             <td>
                 <form action="reserveappro.html" method="post" style="margin:0;">
-                    <input type="hidden" name="title" value="<%= title %>">
-                    <input type="hidden" name="publisher" value="<%= publisher %>">
-                    <input type="hidden" name="count" value="<%= count %>">
-                    <input type="hidden" name="name" value="<%= name %>">
-                    <input type="hidden" name="ISBNcode" value="<%= ISBNcode %>">
-                    <input type="hidden" name="amount" value="<%= amount %>">
+                    <input type="hidden" name="title" id="hiddenTitle" />
+                    <input type="hidden" name="publisher" id="hiddenPublisher" />
+                    <input type="hidden" name="count" id="hiddenCount" />
+                    <input type="hidden" name="name" id="hiddenName" />
+                    <input type="hidden" name="ISBNcode" id="hiddenISBNcode" />
+                    <input type="hidden" name="amount" id="hiddenAmount" />
                     <button type="submit">承認</button>
                 </form>
             </td>
-             <!-- 取引状態 -->
-             <td><span><%= status %></span></td>
-        
-            <!-- 取引完了ボタン -->
+            <td><span id="status"></span></td>
             <td>
                 <form method="post" style="margin:0;">
-                    <input type="hidden" name="title" value="<%= title %>">
-                    <input type="hidden" name="publisher" value="<%= publisher %>">
-                    <input type="hidden" name="count" value="<%= count %>">
-                    <input type="hidden" name="name" value="<%= name %>">
-                    <input type="hidden" name="ISBNcode" value="<%= ISBNcode %>">
-                    <input type="hidden" name="approvalDate" value="<%= approvalDate %>">
-                    <input type="hidden" name="amount" value="<%= amount %>">
-                    <input type="hidden" name="approvalStatus" value="承認済み">
-                    <input type="hidden" name="status" value="完了">
+                    <input type="hidden" name="title" id="hiddenTitle2" />
+                    <input type="hidden" name="publisher" id="hiddenPublisher2" />
+                    <input type="hidden" name="count" id="hiddenCount2" />
+                    <input type="hidden" name="name" id="hiddenName2" />
+                    <input type="hidden" name="ISBNcode" id="hiddenISBNcode2" />
+                    <input type="hidden" name="approvalDate" id="hiddenApprovalDate2" />
+                    <input type="hidden" name="amount" id="hiddenAmount2" />
+                    <input type="hidden" name="approvalStatus" value="承認済み" />
+                    <input type="hidden" name="status" value="完了" />
                     <button type="submit">取引完了</button>
                 </form>
             </td>

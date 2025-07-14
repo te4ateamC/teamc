@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ログイン画面</title>
-        <link rel="stylesheet" href="/src/main/resources/static/css/Login.css">
+        <link rel="stylesheet" href="/css/Login.css">
 
 
 
@@ -26,6 +26,8 @@
                 </tr>
             </table>
             <button type="submit" class="Login">ログイン</button>
+
+            <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
         </form>
     </body>
 

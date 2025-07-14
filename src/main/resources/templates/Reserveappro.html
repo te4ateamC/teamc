@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
-
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -29,29 +26,54 @@
 <h2>予約承認</h2>
 
 <table>
-    <tr><th>タイトル</th><td><%= title %></td></tr>
-    <tr><th>出版社</th><td><%= publisher %></td></tr>
-    <tr><th>冊数</th><td><%= count %></td></tr>
-    <tr><th>名前</th><td><%= name %></td></tr>
-    <tr><th>ISBNコード</th>
-        <td><input type="text" name="ISBNcode" form="approvalForm" /></td>
+    <tr>
+      <th>書名(タイトル)</th>
+      <th>出版社</th>
+      <th>冊</th>
+      <th>名前</th>
     </tr>
-    <tr><th>金額（1冊）</th>
-        <td><input type="text" name="amountInput" form="approvalForm" /></td>
+    <tr>
+      <td id="title"></td>
+      <td id="publisher"></td>
+      <td id="count"></td>
+      <td id="name"></td>
     </tr>
-</table>
-
-<form method="post" action="orderhistory.html" id="approvalForm">
-    <!-- 表示されないhidden項目 -->
-    <input type="hidden" name="title" value="<%= title %>" />
-    <input type="hidden" name="publisher" value="<%= publisher %>" />
-    <input type="hidden" name="count" value="<%= count %>" />
-    <input type="hidden" name="name" value="<%= name %>" />
-    <input type="hidden" name="approvalDate" value="<%= approvalDate %>" />
-    <input type="hidden" name="amount" /> <!-- 合計金額をここに設定 -->
-
+  </table>
+  
+  <br>
+  
+  <!-- 変更可能な入力フォーム -->
+  <form method="post" action="orderhistory.html" id="approvalForm">
+    <table>
+      <tr>
+        <th>書名(タイトル)</th>
+        <td><input type="text" name="title" /></td>
+      </tr>
+      <tr>
+        <th>出版社</th>
+        <td><input type="text" name="publisher" /></td>
+      </tr>
+      <tr>
+        <th>冊数</th>
+        <td><input type="text" name="count" /></td>
+      </tr>
+      <tr>
+        <th>名前</th>
+        <td><span id="formName"></span></td>
+      </tr>
+      <tr>
+        <th>ISBNコード</th>
+        <td><input type="text" name="ISBNcode" /></td>
+      </tr>
+      <tr>
+        <th>金額（1冊）</th>
+        <td><input type="text" name="amountInput" /></td>
+      </tr>
+    </table>
+  
+    <input type="hidden" name="approvalDate" />
+    <input type="hidden" name="amount" />
+  
     <button type="button" onclick="calculateAmountAndSubmit(this.form)">承認する</button>
     <button type="button" onclick="location.href='orderhistory.html'">注文履歴に戻る</button>
-</form>
-</body>
-</html>
+  </form>

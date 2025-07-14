@@ -70,17 +70,26 @@ public class BookController {
     }
 }
 */
-
 package jp.te4a.teamc.spring.boot.bookapp.controller;
 
+import jp.te4a.teamc.spring.boot.bookapp.service.BookReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BookReservationController {
 
+    @Autowired
+    private BookReservationService reservationService;
+
+   @GetMapping("/reservation")
+    public String showLoginForm() {
+        return "BookReservation";  // BookReservation.htmlを表示
+    }
     @PostMapping("/post")
     public String reserveBook(
         @RequestParam String title,
@@ -91,7 +100,7 @@ public class BookReservationController {
         @RequestParam(required = false) String address,
         Model model
     ) {
-        // フォーム内容をモデルに渡す（画面に表示）
+        // 画面に表示する内容
         model.addAttribute("title", title);
         model.addAttribute("publisher", publisher);
         model.addAttribute("count", count);
@@ -99,7 +108,10 @@ public class BookReservationController {
         model.addAttribute("tel", tel);
         model.addAttribute("address", address);
 
-        // 予約完了画面へ
+        // Serviceに予約処理を任せる
+        reservationService.reserve(title, publisher, count, name, tel, address);
+
         return "Confirmation";  // Confirmation.htmlへ
     }
 }
+
