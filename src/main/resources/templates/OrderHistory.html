@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>注文履歴</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/OrderHistory.css">
+    <link rel="stylesheet" href="/css/OrderHistory.css">
 </head>
 <body>
-    <button type="button" onclick="location.href='login.html'">ログアウト</button>
+    <button type="button" onclick="location.href='Login.html'">ログアウト</button>
     <h2>注文履歴</h2>
 
     <table >
@@ -31,7 +29,7 @@
             <td id="approvalStatus"></td>
         
             <td>
-                <form action="reserveappro.html" method="post" style="margin:0;">
+                <form action="reserveappro.html" method="get" style="margin:0;">
                     <input type="hidden" name="title" id="hiddenTitle" />
                     <input type="hidden" name="publisher" id="hiddenPublisher" />
                     <input type="hidden" name="count" id="hiddenCount" />

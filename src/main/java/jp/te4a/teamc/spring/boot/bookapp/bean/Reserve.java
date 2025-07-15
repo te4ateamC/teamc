@@ -28,5 +28,5 @@ public class Reserve {
     private String name;
     @Column(nullable=false)
     private String tel;
-    private Integer address;
+    private String address;
 }

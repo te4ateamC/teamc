@@ -25,16 +25,27 @@ public class LoginController {
         if (logout != null) model.addAttribute("logoutMessage", "ログアウトしました");
         return "Login"; // Login.html
     }
-    
+    @GetMapping("/bookreservation")
+    public String showReservationForm() {
+    return "BookReservation";  // Reservation.html を返す
+    }
+
 
     @PostMapping("/login")
-    String login(@RequestParam String user, @RequestParam String password, Model model) {
-        // 仮の認証処理
-        if ("admin".equals(user) && "admin".equals(password)) {
-            return "redirect:order-history";  // 認証成功したら本一覧へリダイレクト
-        }
-        // 認証失敗したらエラーメッセージをセットしてログインフォームに戻る
-        model.addAttribute("errorMessage", "ユーザIDかパスワードが違います");
-        return "Login";
+String login(@RequestParam String user, @RequestParam String password, Model model) {
+    // ユーザーIDとパスワードが両方空文字なら予約画面へ
+    if (user.isEmpty() && password.isEmpty()) {
+        return "redirect:/bookreservation";
     }
+
+    // 仮の認証処理
+    if ("admin".equals(user) && "admin".equals(password)) {
+        return "redirect:/order-history";
+    }
+
+    // 認証失敗
+    model.addAttribute("errorMessage", "ユーザIDかパスワードが違います");
+    return "Login";
 }
+}
+

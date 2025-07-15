@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
 
     <head>
@@ -11,13 +10,13 @@
                 document.getElementById("reserveForm").reset();
             }
         </script>
-        <link rel="stylesheet" href="/src/main/resources/static/css/BookReservation.css">
+        <link rel="stylesheet" href="/css/BookReservation.css">
     </head>
 
     <body>
         <h2>書籍を予約する</h2>
         <p>※がある項目は必須入力です</p>
-        <form id="reserveForm" method="post" action="orderhistory.html">
+        <form id="reserveForm" method="get" action="orderhistory.html">
             <table>
                 <tr>
                     <td>書籍名（タイトル）※:</td>

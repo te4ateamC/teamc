@@ -4,16 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import jp.te4a.teamc.spring.boot.bookapp.repository.ReserveRepository;
+
+import jp.te4a.teamc.spring.boot.bookapp.bean.Reserve;
 
 @Service
 public class BookReservationService {
 
     @Autowired
     private JavaMailSender mailSender;
+    private ReserveRepository reserveRepository;
 
     public void reserve(String title, String publisher, String count, String name, String tel, String address) {
         // 必要ならDB保存などをここでやる
+        Reserve reserve = new Reserve();
+        reserve.setTitle(title);
+        reserve.setPublisher(publisher);
+        reserve.setCount(Integer.parseInt(count));
+        reserve.setName(name);
+        reserve.setTel(tel);
+        reserve.setAddress(address);
 
+        reserveRepository.save(reserve); // H2 に保存！
         // メール送信
         if (address != null && !address.isEmpty()) {
             sendConfirmationEmail(address, title, publisher, count, name, tel);

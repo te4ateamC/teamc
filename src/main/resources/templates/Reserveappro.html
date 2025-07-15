@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>予約承認する</title>
-<link rel="stylesheet" href="/src/main/resources/static/css/Reservation.css">
+<link rel="stylesheet" href="/css/Reservation.css">
 <script>
     function calculateAmountAndSubmit(form) {
         const unitPrice = parseFloat(form.amountInput.value);
@@ -46,6 +45,13 @@
   <form method="post" action="orderhistory.html" id="approvalForm">
     <table>
       <tr>
+        <th>下記項目は必須入力です</th>
+      </tr>
+      <tr>
+        <th>ISBNコード</th>
+        <td><input type="text" name="ISBNcode" /></td>
+      </tr>
+      <tr>
         <th>書名(タイトル)</th>
         <td><input type="text" name="title" /></td>
       </tr>
@@ -54,19 +60,14 @@
         <td><input type="text" name="publisher" /></td>
       </tr>
       <tr>
+        <th>下記項目は必須入力です</th>
+      </tr>
+      <tr>
         <th>冊数</th>
         <td><input type="text" name="count" /></td>
       </tr>
       <tr>
-        <th>名前</th>
-        <td><span id="formName"></span></td>
-      </tr>
-      <tr>
-        <th>ISBNコード</th>
-        <td><input type="text" name="ISBNcode" /></td>
-      </tr>
-      <tr>
-        <th>金額（1冊）</th>
+        <th>金額</th>
         <td><input type="text" name="amountInput" /></td>
       </tr>
     </table>
