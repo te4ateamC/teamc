@@ -11,16 +11,16 @@
     </head>
 
     <body>
-        <h2>ログイン画面</h2>
+        <h1 class="ログイン画面">ログイン画面</h1>
         <form method="post" action="/login" th:action="@{/login}">
             <table>
                 <tr>
-                    <td class="ユーザID">ユーザID:</td>
-                    <td><input type="text" name="user" class="textbox"/></td>
+                    <td class="ユーザID">ユーザID</td>
+                    <td><input type="text" name="user" class="textbox1"/></td>
                 </tr>
                 <tr>
-                    <td class="パスワード">パスワード：</td>
-                    <td><input type="password" name="password" class="textbox"/></td>
+                    <td class="パスワード">パスワード</td>
+                    <td><input type="password" name="password" class="textbox2"/></td>
                 </tr>
             </table>
             <button type="submit" class="Login">ログイン</button>

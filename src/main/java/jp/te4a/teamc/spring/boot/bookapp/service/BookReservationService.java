@@ -13,6 +13,7 @@ public class BookReservationService {
 
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
     private ReserveRepository reserveRepository;
 
     public void reserve(String title, String publisher, String count, String name, String tel, String address) {
@@ -26,6 +27,15 @@ public class BookReservationService {
         reserve.setAddress(address);
 
         reserveRepository.save(reserve); // H2 に保存！
+         if (address != null && !address.isEmpty()) {
+        try {
+            sendConfirmationEmail(address, title, publisher, count, name, tel);
+        } catch (Exception e) {
+            System.out.println("メール送信に失敗しました: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
         // メール送信
         if (address != null && !address.isEmpty()) {
             sendConfirmationEmail(address, title, publisher, count, name, tel);

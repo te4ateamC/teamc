@@ -1,46 +1,45 @@
-    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>書籍予約確認</title>
+    <link rel="stylesheet" href="/css/Confirmation.css">
+</head>
+<body>
+    <h2>ご予約が完了しました！</h2>
+    <p>・ご予約内容の確認をメールで通知いたしました。</p>
+    <p>・後日、入荷した際に金額などの情報を通知いたします。</p>
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>書籍予約確認</title>
-        <link rel="stylesheet" href="/css/Confirmation.css">
-    </head>
+    <h2>ご予約内容</h2>
+    <table>
+        <tr>
+            <td>書籍名（タイトル）：</td>
+            <td th:text="${title}">タイトル</td>
+        </tr>
+        <tr>
+            <td>出版社名：</td>
+            <td th:text="${publisher}">出版社</td>
+        </tr>
+        <tr>
+            <td>冊数：</td>
+            <td th:text="${count}">1</td>
+        </tr>
+        <tr>
+            <td>お名前：</td>
+            <td th:text="${name}">お名前</td>
+        </tr>
+        <tr>
+            <td>電話番号：</td>
+            <td th:text="${tel}">電話番号</td>
+        </tr>
+        <tr>
+            <td>メールアドレス：</td>
+            <td th:text="${address}">example@example.com</td>
+        </tr>
+    </table>
 
-    <body>
-        <h2>ご予約が完了しました！</h2>
-        <p>・ご予約内容の確認の連絡をSMSで通知いたしました。</p>
-        <p>・後日、入荷した際に金額などの情報を通知いたします</p>
-        <h2>ご予約内容</h2>
-        <form method="post" action="/post">
-            <table>
-                <tr>
-                    <td>書籍名（タイトル）:</td>
-                    <td><input type="text" name="title" /></td>
-                </tr>
-                <tr>
-                    <td>出版社名：</td>
-                    <td><input type="text" name="publisher" /></td>
-                </tr>
-                <tr>
-                    <td>冊数：</td>
-                    <td><input type="text" name="count" /></td>
-                </tr>
-                <tr>
-                    <td>お名前：</td>
-                    <td><input type="text" name="name" /></td>
-                </tr>
-                <tr>
-                    <td>電話番号:</td>
-                    <td><input type="text" name="tel" /></td>
-                </tr>
-                <tr>
-                    <td>メールアドレス：</td>
-                    <td><input type="text" name="address" /></td>
-                </tr>
-            </table>
-            <button type="submit">予約画面に戻る</button>
-        </form>
-    </body>
-
-    </html>
+    <a href="/Bookreservation">
+         予約画面に戻る
+    </a>
+</body>
+</html>

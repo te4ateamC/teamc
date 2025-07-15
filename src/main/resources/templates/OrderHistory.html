@@ -9,7 +9,23 @@
     <button type="button" onclick="location.href='Login.html'">ログアウト</button>
     <h2>注文履歴</h2>
 
-    <table >
+    <table border="1">
+        <thead>
+            <tr>
+                <th>書籍名</th>
+                <th>出版社</th>
+                <th>冊数</th>
+                <th>名前</th>
+                <th>電話番号</th>
+                <th>住所</th>
+                <th>ISBNコード</th>
+                <th>承認日</th>
+                <th>金額</th>
+                <th>承認状況</th>
+                <th>承認</th>
+                <th>取引完了</th>
+            </tr>
+        </thead>
         <tr>
             <!-- 書籍名 -->
             <td><input type="text" name="title" id="title"></td>
@@ -39,7 +55,7 @@
                     <button type="submit">承認</button>
                 </form>
             </td>
-            <td><span id="status"></span></td>
+            <td><span id="status">未承認</span></td>
             <td>
                 <form method="post" style="margin:0;">
                     <input type="hidden" name="title" id="hiddenTitle2" />
