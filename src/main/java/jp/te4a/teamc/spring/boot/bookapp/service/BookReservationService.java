@@ -35,11 +35,6 @@ public class BookReservationService {
             e.printStackTrace();
         }
     }
-
-        // メール送信
-        if (address != null && !address.isEmpty()) {
-            sendConfirmationEmail(address, title, publisher, count, name, tel);
-        }
     }
 
     private void sendConfirmationEmail(String to, String title, String publisher, String count, String name, String tel) {

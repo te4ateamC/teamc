@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import jp.te4a.teamc.spring.boot.bookapp.service.LoginUserDetailsService;
+//import jp.te4a.teamc.spring.boot.bookapp.service.LoginUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

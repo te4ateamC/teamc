@@ -11,7 +11,7 @@ import jp.te4a.teamc.spring.boot.bookapp.bean.Reserve;
 
 @Repository
 
-    public interface ReserveRepository extends JpaRepository<Reserve,String> {
+    public interface ReserveRepository extends JpaRepository<Reserve,Integer> {
 
         @Query("SELECT X FROM BookBean X ORDER BY X.title")
         List<Reserve>findAllOrderByTitle();

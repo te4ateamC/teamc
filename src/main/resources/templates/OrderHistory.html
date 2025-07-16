@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="/css/OrderHistory.css">
 </head>
 <body>
-    <button type="button" onclick="location.href='Login.html'">ログアウト</button>
+    <form action="Login.html" method="get" style="display:inline;">
+        <button type="submit">ログアウト</button>
+      </form>
     <h2>注文履歴</h2>
 
     <table border="1">
@@ -74,5 +76,19 @@
            
         </tr>
     </table>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const completeButton = document.querySelector("form button[type='submit']"); // 「取引完了」のボタンを取得
+          const statusSpan = document.getElementById("status");
+      
+          completeButton.addEventListener("click", function(event) {
+            // もしフォーム送信の前に画面だけ変えたいならコメントアウトを外す
+            // event.preventDefault();
+      
+            statusSpan.textContent = "承認済み";  // 表示を変更
+          });
+        });
+      </script>
+      
 </body>
 </html>

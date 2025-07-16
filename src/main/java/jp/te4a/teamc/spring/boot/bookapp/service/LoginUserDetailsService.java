@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import jp.te4a.teamc.spring.boot.bookapp.bean.UserBean;
 import jp.te4a.teamc.spring.boot.bookapp.repository.UserRepository;
-import jp.te4a.teamc.spring.boot.bookapp.security.LoginUserDetails;
+//import jp.te4a.teamc.spring.boot.bookapp.security.LoginUserDetails;
 
-@Service
+/*@Service
 public class LoginUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
@@ -31,3 +31,4 @@ public class LoginUserDetailsService implements UserDetailsService {
         return AuthorityUtils.createAuthorityList("ROLE_USER");
     }
 }
+*/

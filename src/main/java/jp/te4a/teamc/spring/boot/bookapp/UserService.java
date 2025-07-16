@@ -15,7 +15,6 @@ public class UserService {
     UserRepository userRepository;
 
     public UserForm create(UserForm userForm) {
-        userForm.setPassword(new BCryptPasswordEncoder().encode(userForm.getPassword()));
         UserBean userBean = new UserBean();
         //画面用ユーザ情報（From）→DB用ユーザ情報（Bean）
         BeanUtils.copyProperties(userForm, userBean);

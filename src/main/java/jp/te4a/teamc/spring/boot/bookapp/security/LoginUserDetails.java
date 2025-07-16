@@ -9,7 +9,7 @@ import jp.te4a.teamc.spring.boot.bookapp.bean.UserBean;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
+/*@Data
 @EqualsAndHashCode(callSuper = false)
 public class LoginUserDetails extends User {
     private final UserBean user;
@@ -19,8 +19,8 @@ public class LoginUserDetails extends User {
             boolean credenttialsNonExpired,     //ロック状態を設定可能
             boolean accountNonLocked,       //すべて該当なし（true）でユーザ認証
             Collection<GrantedAuthority> authorities) {     //呼び出し時にリストで設定
-        super(userBean.getUsername(), userBean.getPassword(),
+        //super(userBean.getUsername(), userBean.getPassword(),
                 true, true, true, true, authorities);
         this.user = userBean;
     }
-}
+}*/
