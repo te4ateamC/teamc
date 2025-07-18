@@ -19,33 +19,38 @@
     }
 </script>
 </head>
-<body>
-<button onclick="location.href='logout.jsp'">ログアウト</button>
+<header class="header">
+  <form action="/logout" method="get" style="display:inline;">
+    <button type="submit">ログアウト</button>
+    </from
+</header>
 
-<h2>予約承認</h2>
+<h2 class="ScreenTitle">予約承認</h2>
 
 <table>
     <tr>
       <th>書名(タイトル)</th>
-      <th>出版社</th>
+      <th class="publisherdisplay">出版社</th>
       <th>冊</th>
-      <th>名前</th>
+      <th class="namedisplay">名前</th>
     </tr>
     <tr>
-      <td id="title"></td>
-      <td id="publisher"></td>
-      <td id="count"></td>
-      <td id="name"></td>
+      <td id="title" class="data-cell"></td>
+      <td id="publisher" class="data-cell"></td>
+      <td id="count" class="data-cell"></td>
+      <td id="name" class="data-cell"></td>
     </tr>
   </table>
   
   <br>
   
   <!-- 変更可能な入力フォーム -->
-  <form method="post" action="orderhistory.html" id="approvalForm">
+  <!--<form method="get" action="orderhistory.html" id="approvalForm">-->
+    <form method="post" action="/reserveappro" id="approvalForm">
+
     <table>
       <tr>
-        <th>下記項目は必須入力です</th>
+        <th class="Required" colspan="4">下記項目は必須入力です</th>
       </tr>
       <tr>
         <th>ISBNコード</th>
@@ -60,11 +65,11 @@
         <td><input type="text" name="publisher" /></td>
       </tr>
       <tr>
-        <th>下記項目は必須入力です</th>
+        <th class="Required" colspan="4">下記項目は必須入力です</th>
       </tr>
       <tr>
-        <th>冊数</th>
-        <td><input type="text" name="count" /></td>
+        <!--<th>冊数</th>
+        <td><input type="text" name="count" /></td>-->
       </tr>
       <tr>
         <th>金額</th>
@@ -72,9 +77,35 @@
       </tr>
     </table>
   
+    <!-- hiddenで送信するフィールド -->
     <input type="hidden" name="approvalDate" />
     <input type="hidden" name="amount" />
+    <input type="hidden" name="approvalStatus" value="承認済み" />
   
     <button type="button" onclick="calculateAmountAndSubmit(this.form)">承認する</button>
     <button type="button" onclick="location.href='orderhistory.html'">注文履歴に戻る</button>
   </form>
+  
+  <script>
+    function calculateAmountAndSubmit(form) {
+        const unitPrice = parseFloat(form.amountInput.value);
+        const count = parseInt(document.getElementById("count")?.textContent || 1); // デフォルト1冊
+    
+        if (!isNaN(unitPrice) && !isNaN(count)) {
+            form.amount.value = unitPrice * count;
+    
+            // 承認日セット（yyyy-mm-dd）
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            document.getElementById("approvalDate").value = `${yyyy}-${mm}-${dd}`;
+    
+            // フォーム送信
+            form.submit();
+        } else {
+            alert("金額または冊数が無効です。");
+        }
+    }
+    </script>
+    

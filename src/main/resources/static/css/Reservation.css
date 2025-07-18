@@ -1,0 +1,105 @@
+/* 見出し */
+h2 {
+    margin-top: 50px;
+    font-size: 35px;
+    color: #080101;
+}
+body {
+    font-family: "メイリオ", sans-serif;
+    background-color: #f9f9f9;
+    text-align: center;
+    margin: 20px;
+}
+
+
+/* 表のスタイル */
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 500%;
+    max-width: 850px;
+}
+
+table, th, td {
+    border: 2px solid #999;
+}
+
+th, td {
+    padding: 10px;
+    font-size: 25px;
+    text-align: center;
+}
+
+td, th {
+    height: 25px;  /* 例：60pxの高さに固定 */
+    vertical-align: middle; /* 中央寄せ */
+}
+
+th {
+    background-color: #a7c7f7;
+    color: #030000;
+}
+
+.namedisplay {
+    width: 250px; 
+}
+.publisherdisplay{
+    width: 200px;  
+}
+/* 入力フォームのスタイル */
+input[type="text"] {
+    width: 120%;
+    padding: 8px;
+    font-size: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+/* 必須項目の説明 */
+.Required{
+    background-color: #fdcdcd;
+    color: rgb(250, 50, 50);
+    font-size: 20px;
+    border: none;
+}
+
+/* ボタンスタイル */
+button {
+    padding: 25px 40px;
+    margin: 20px 70px;
+    font-size: 25px;
+    background-color: #ffaa33;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background-color: #a88248;
+}
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background: transparent;
+  }
+/* ログアウトボタン */
+header button[onclick*="logout"] {
+    position: absolute;
+    top: 10px;
+    right: 1px;
+    background-color: #ccc;
+    color: #333;
+    font-size: 18px;
+}
+
+input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    font-size: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}

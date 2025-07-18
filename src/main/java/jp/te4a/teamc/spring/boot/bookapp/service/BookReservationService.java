@@ -39,6 +39,7 @@ public class BookReservationService {
 
     private void sendConfirmationEmail(String to, String title, String publisher, String count, String name, String tel) {
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("te200394@gmail.com");
         message.setTo(to);
         message.setSubject("【みなみかたブックス】ご予約確認の連絡");
         message.setText(
@@ -55,8 +56,7 @@ public class BookReservationService {
                 + "--------------------------\n"
                 + "ご利用ありがとうございます。\n"
         );
-        message.setFrom("te200394@gmail.com");
-
         mailSender.send(message);
     }
+
 }

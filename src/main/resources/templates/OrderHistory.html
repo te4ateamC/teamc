@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>注文履歴</title>
+    <title>注文受付</title>
     <link rel="stylesheet" href="/css/OrderHistory.css">
 </head>
+
 <body>
-    <form action="Login.html" method="get" style="display:inline;">
+    <form action="/logout" method="get" style="display:inline;">
         <button type="submit">ログアウト</button>
-      </form>
-    <h2>注文履歴</h2>
+    </form>
+    <h2>注文受付</h2>
 
     <table border="1">
         <thead>
@@ -19,7 +21,7 @@
                 <th>冊数</th>
                 <th>名前</th>
                 <th>電話番号</th>
-                <th>住所</th>
+                <th>メールアドレス</th>
                 <th>ISBNコード</th>
                 <th>承認日</th>
                 <th>金額</th>
@@ -30,34 +32,43 @@
         </thead>
         <tr>
             <!-- 書籍名 -->
-            <td><input type="text" name="title" id="title"></td>
-        
+            <td><<!--input type="text" name="title" --> id="title"></td>
+
             <!-- 出版社 -->
-            <td><input type="text" name="publisher" id="publisher"></td>
-        
+            <td><<!--input type="text" name="publisher" --> id="publisher"></td>
+
             <!-- 冊数 -->
-            <td><input type="text" name="count" id="count"></td>
-        
+            <td><<!--input type="text" name="count" --> id="count"></td>
+
             <td id="name"></td>
             <td id="tel"></td>
             <td id="address"></td>
             <td id="ISBNcode"></td>
             <td id="approvalDate"></td>
             <td id="amount"></td>
-            <td id="approvalStatus"></td>
-        
+            <td id="approvalStatus">未承認</td>
+
             <td>
-                <form action="reserveappro.html" method="get" style="margin:0;">
+                <!--<form action="/reserveappro" method="post" style="margin:0;">
                     <input type="hidden" name="title" id="hiddenTitle" />
                     <input type="hidden" name="publisher" id="hiddenPublisher" />
                     <input type="hidden" name="count" id="hiddenCount" />
                     <input type="hidden" name="name" id="hiddenName" />
                     <input type="hidden" name="ISBNcode" id="hiddenISBNcode" />
                     <input type="hidden" name="amount" id="hiddenAmount" />
-                    <button type="submit">承認</button>
+                    <button type="submit" id="approveBtn">承認</button>
+                </form>-->
+                <form action="/reserveappro" method="post" style="margin:0;">
+                    <input type="hidden" name="title" value="〇〇書籍" />
+                    <input type="hidden" name="publisher" value="〇〇出版社" />
+                    <input type="hidden" name="count" value="1" />
+                    <input type="hidden" name="name" value="山田太郎" />
+                    <input type="hidden" name="ISBNcode" value="1234567890123" />
+                    <input type="hidden" name="amount" value="2000" />
+                    <button type="submit" id="approveBtn">承認</button>
                 </form>
             </td>
-            <td><span id="status">未承認</span></td>
+            <td><span id="status">未受領</span></td>
             <td>
                 <form method="post" style="margin:0;">
                     <input type="hidden" name="title" id="hiddenTitle2" />
@@ -72,23 +83,48 @@
                     <button type="submit">取引完了</button>
                 </form>
             </td>
-        
-           
+
+
         </tr>
     </table>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const completeButton = document.querySelector("form button[type='submit']"); // 「取引完了」のボタンを取得
-          const statusSpan = document.getElementById("status");
-      
-          completeButton.addEventListener("click", function(event) {
-            // もしフォーム送信の前に画面だけ変えたいならコメントアウトを外す
-            // event.preventDefault();
-      
-            statusSpan.textContent = "承認済み";  // 表示を変更
-          });
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // "承認状況" が送られてきていたら表示を変更
+            const approvalStatus = urlParams.get("approvalStatus");
+            const approvalDate = urlParams.get("approvalDate");
+            const amount = urlParams.get("amount");
+
+            if (approvalStatus) {
+                document.getElementById("approvalStatus").textContent = approvalStatus;
+            }
+            if (approvalDate) {
+                document.getElementById("approvalDate").textContent = approvalDate;
+            }
+            if (amount) {
+                document.getElementById("amount").textContent = amount;
+            }
         });
-      </script>
-      
+
+        const approvalStatus = document.getElementById("approvalStatus"); // 承認状況セル
+        const statusSpan = document.getElementById("status"); // 受領状況表示（取引完了）
+
+        const approveForm = document.querySelector("form[action='/reserveappro']");
+
+
+        const completeForm = document.querySelectorAll("form")[2]; // 取引完了のform（3番目のform）
+        const completeButton = completeForm.querySelector("button[type='submit']");
+
+        // 取引完了ボタンを押したとき
+        completeButton.addEventListener("click", function (e) {
+            e.preventDefault(); // デフォルト送信を止める
+            statusSpan.textContent = "受領済み";
+            completeButton.disabled = true;
+
+            // 必要なら送信
+            completeForm.submit(); // 手動で送信
+        });
+    </script>
 </body>
 </html>
