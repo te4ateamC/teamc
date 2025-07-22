@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>注文受付</title>
+    <title>注文履歴</title>
     <link rel="stylesheet" href="/css/OrderHistory.css">
 </head>
 
@@ -11,7 +11,7 @@
     <form action="/logout" method="get" style="display:inline;">
         <button type="submit">ログアウト</button>
     </form>
-    <h2>注文受付</h2>
+    <h2>注文履歴</h2>
 
     <table border="1">
         <thead>
@@ -30,62 +30,47 @@
                 <th>取引完了</th>
             </tr>
         </thead>
-        <tr>
-            <!-- 書籍名 -->
-            <td><<!--input type="text" name="title" --> id="title"></td>
-
-            <!-- 出版社 -->
-            <td><<!--input type="text" name="publisher" --> id="publisher"></td>
-
-            <!-- 冊数 -->
-            <td><<!--input type="text" name="count" --> id="count"></td>
-
-            <td id="name"></td>
-            <td id="tel"></td>
-            <td id="address"></td>
-            <td id="ISBNcode"></td>
-            <td id="approvalDate"></td>
-            <td id="amount"></td>
-            <td id="approvalStatus">未承認</td>
-
-            <td>
-                <!--<form action="/reserveappro" method="post" style="margin:0;">
-                    <input type="hidden" name="title" id="hiddenTitle" />
-                    <input type="hidden" name="publisher" id="hiddenPublisher" />
-                    <input type="hidden" name="count" id="hiddenCount" />
-                    <input type="hidden" name="name" id="hiddenName" />
-                    <input type="hidden" name="ISBNcode" id="hiddenISBNcode" />
-                    <input type="hidden" name="amount" id="hiddenAmount" />
-                    <button type="submit" id="approveBtn">承認</button>
-                </form>-->
-                <form action="/reserveappro" method="post" style="margin:0;">
-                    <input type="hidden" name="title" value="〇〇書籍" />
-                    <input type="hidden" name="publisher" value="〇〇出版社" />
-                    <input type="hidden" name="count" value="1" />
-                    <input type="hidden" name="name" value="山田太郎" />
-                    <input type="hidden" name="ISBNcode" value="1234567890123" />
-                    <input type="hidden" name="amount" value="2000" />
-                    <button type="submit" id="approveBtn">承認</button>
-                </form>
-            </td>
-            <td><span id="status">未受領</span></td>
-            <td>
-                <form method="post" style="margin:0;">
-                    <input type="hidden" name="title" id="hiddenTitle2" />
-                    <input type="hidden" name="publisher" id="hiddenPublisher2" />
-                    <input type="hidden" name="count" id="hiddenCount2" />
-                    <input type="hidden" name="name" id="hiddenName2" />
-                    <input type="hidden" name="ISBNcode" id="hiddenISBNcode2" />
-                    <input type="hidden" name="approvalDate" id="hiddenApprovalDate2" />
-                    <input type="hidden" name="amount" id="hiddenAmount2" />
-                    <input type="hidden" name="approvalStatus" value="承認済み" />
-                    <input type="hidden" name="status" value="完了" />
-                    <button type="submit">取引完了</button>
-                </form>
-            </td>
-
-
-        </tr>
+        <tbody>
+            <tr th:each="reservation : ${reservationList}">
+                <td th:text="${reservation.title}">Java入門</td>
+                <td th:text="${reservation.publisher}">技術評論社</td>
+                <td th:text="${reservation.count}">3</td>
+                <td th:text="${reservation.name}">山田太郎</td>
+                <td th:text="${reservation.tel}">090-1234-5678</td>
+                <td th:text="${reservation.email}">yamada@example.com</td>
+                <td th:text="${reservation.ISBNcode}">9784774197151</td>
+                <td th:text="${reservation.approvalDate}">2025-07-22</td>
+                <td th:text="${reservation.amount}">6000</td>
+                <td th:text="${reservation.approvalStatus}">未承認</td>
+                <!-- 承認ボタン -->
+                <td>
+                    <form action="/reserveappro" method="post">
+                        <input type="hidden" name="title" th:value="${reservation.title}" />
+                        <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
+                        <input type="hidden" name="count" th:value="${reservation.count}" />
+                        <input type="hidden" name="name" th:value="${reservation.name}" />
+                        <input type="hidden" name="ISBNcode" th:value="${reservation.ISBNcode}" />
+                        <input type="hidden" name="amount" th:value="${reservation.amount}" />
+                        <button type="submit">承認</button>
+                    </form>
+                </td>
+                <!-- 取引完了 -->
+                <td>
+                    <form action="/complete" method="post">
+                        <input type="hidden" name="title" th:value="${reservation.title}" />
+                        <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
+                        <input type="hidden" name="count" th:value="${reservation.count}" />
+                        <input type="hidden" name="name" th:value="${reservation.name}" />
+                        <input type="hidden" name="ISBNcode" th:value="${reservation.ISBNcode}" />
+                        <input type="hidden" name="approvalDate" th:value="${reservation.approvalDate}" />
+                        <input type="hidden" name="amount" th:value="${reservation.amount}" />
+                        <input type="hidden" name="approvalStatus" th:value="${reservation.approvalStatus}" />
+                        <input type="hidden" name="status" value="完了" />
+                        <button type="submit">取引完了</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
     </table>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -127,4 +112,5 @@
         });
     </script>
 </body>
+
 </html>

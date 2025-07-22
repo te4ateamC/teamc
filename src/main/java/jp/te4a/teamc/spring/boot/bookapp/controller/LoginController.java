@@ -31,10 +31,10 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/order-history")
+    /*@GetMapping("/order-history")
     public String showOrderHistory() {
         return "OrderHistory"; // OrderHistory.html を表示
-    }
+    }*/
 
     @GetMapping("/loginForm")
     public String showLoginForm(@RequestParam(value = "error", required = false) String error,
