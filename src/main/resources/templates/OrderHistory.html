@@ -12,22 +12,23 @@
         <button type="submit">ログアウト</button>
     </form>
     <h2>注文履歴</h2>
-
+    <div class="table-wrapper">
     <table border="1">
         <thead>
             <tr>
-                <th>書籍名</th>
-                <th>出版社</th>
-                <th>冊数</th>
-                <th>名前</th>
-                <th>電話番号</th>
-                <th>メールアドレス</th>
-                <th>ISBNコード</th>
-                <th>承認日</th>
-                <th>金額</th>
-                <th>承認状況</th>
-                <th>承認</th>
-                <th>取引完了</th>
+                <th class="col-title">書籍名</th>
+                <th class="col-publisher">出版社</th>
+                <th class="col-count">冊数</th>
+                <th class="col-name">名前</th>
+                <th class="col-tel">電話番号</th>
+                <th class="col-address">住所</th>
+                <th class="col-isbn">ISBNコード</th>
+                <th class="col-date">承認日</th>
+                <th class="col-amount">金額</th>
+                <th class="col-status">承認状況</th>
+                <th class="col-approve"></th>
+                <th class="col-complete">取引状況</th>
+                <th class="col-approve"></th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@
                 <td th:text="${reservation.amount}">6000</td>
                 <td th:text="${reservation.approvalStatus}">未承認</td>
                 <!-- 承認ボタン -->
+                <!--<td th:text="">取引未完了</td>-->
                 <td>
                     <form action="/reserveappro" method="post">
                         <input type="hidden" name="title" th:value="${reservation.title}" />
@@ -66,12 +68,13 @@
                         <input type="hidden" name="amount" th:value="${reservation.amount}" />
                         <input type="hidden" name="approvalStatus" th:value="${reservation.approvalStatus}" />
                         <input type="hidden" name="status" value="完了" />
-                        <button type="submit">取引完了</button>
+                        <button type="submit">完了</button>
                     </form>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);

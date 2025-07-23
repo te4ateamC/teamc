@@ -1,0 +1,156 @@
+body {
+    font-family: "メイリオ", sans-serif;
+    background-color: #ffffff;
+    margin: 10px;
+    text-align: center;
+}
+
+/* ログアウトボタン */
+form[action="/logout"] button,
+button.logout-btn {
+    float: right;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #777;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+form[action="/logout"] button:hover,
+button.logout-btn:hover {
+    background-color: #555;
+}
+
+/* 見出し */
+h2 {
+    margin-top: 60px;
+    font-size: 50px;
+    color: #333;
+}
+
+/* テーブル基本設定 */
+table {
+    margin: 50px auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 2000px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    max-width: none;
+    min-width: 2000px
+   
+}
+
+thead th,
+tbody td {
+    height: 25px;
+    vertical-align: middle;
+    padding: 4px;
+    line-height: 1.2px;
+    border: 2px solid #999;
+}
+
+thead th {
+    background-color: #a7c7f7;
+    color: #030000;
+    font-size: 20px;
+}
+
+/* 列幅設定（クラス別） */
+.col-title      { width: 15%; }
+.col-publisher  { width: 12%; }
+.col-count      { width: 5%; }
+.col-name       { width: 10%; }
+.col-tel        { width: 10%; }
+.col-address    { width: 13%; }
+.col-isbn       { width: 10%; }
+.col-date       { width: 8%; }
+.col-amount     { width: 5%; }
+.col-status     { width: 5%; }
+.col-approve    { width: 3%; }
+.col-complete   { width: 4%; }
+
+/* フォーム・ボタン共通スタイル */
+form button,
+button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffaa33;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover,
+button:hover {
+    background-color: #cc7a00;
+}
+
+/* 承認状況・取引状況 強調表示 */
+#approvalStatus,
+#status {
+    font-weight: bold;
+    color: #d33;
+}
+
+/* 非表示フィールド */
+input[type="hidden"] {
+    display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    form[action="/logout"] button,
+    button.logout-btn {
+        float: none;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .col-complete {
+        padding: 0;
+        text-align: center;
+        vertical-align: middle;
+        width: 9%;
+        height: 60px;
+    }
+
+    .col-complete button {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #ffaa33;
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .col-complete button:hover {
+        background-color: #cc7a00;
+    }
+    .col-complete {
+        width: 10%;
+    }
+    .col-complete {
+        padding: 5px;
+        box-sizing: border-box;
+        width: 10%;
+    }
+    .table-wrapper {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    
+}
