@@ -27,42 +27,41 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     // ここにセキュリティ設定メソッドなどを書く
 
-
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/css/**", "/login", "/loginForm","/order-history").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin(login -> login
-                .loginPage("/loginForm")
-                .loginProcessingUrl("/login")
-                .usernameParameter("user")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/order-history", true)
-                .failureUrl("/loginForm?error")
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutSuccessUrl("/loginForm?logout")
-                .permitAll()
-            )
-            .csrf(csrf -> csrf.disable());
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/css/**", "/login", "/loginForm", "/orderhistory", "/reservation",
+                                "/confirmation", "/post", "/Confirmation.html")
+                        .permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(login -> login
+                        .loginPage("/loginForm")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("user")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/orderhistory", true)
+                        .failureUrl("/loginForm?error")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/Login.html")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll());
+        // .csrf(csrf -> csrf.disable());
 
         // inMemoryユーザの設定をここでやる
         AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authBuilder.inMemoryAuthentication()
-            .withUser("testuser")
-            .password(passwordEncoder().encode("testpass"))
-            .roles("USER");
+                .withUser("testuser")
+                .password(passwordEncoder().encode("testpass"))
+                .roles("USER");
 
         return http.build();
     }

@@ -17,11 +17,6 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
-    /*@GetMapping("/login")
-    public String showLoginForm() {
-        return "Login"; // Login.htmlを表示
-    }*/
-
     @WebServlet("/logout")
     public class LogoutServlet extends HttpServlet {
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,11 +25,6 @@ public class LoginController {
             response.sendRedirect("Login.html"); // Login画面にリダイレクト
         }
     }
-
-    /*@GetMapping("/order-history")
-    public String showOrderHistory() {
-        return "OrderHistory"; // OrderHistory.html を表示
-    }*/
 
     @GetMapping("/loginForm")
     public String showLoginForm(@RequestParam(value = "error", required = false) String error,
@@ -61,7 +51,7 @@ public class LoginController {
 
         // 仮の認証処理
         if ("admin".equals(user) && "admin".equals(password)) {
-            return "redirect:/order-history";
+            return "redirect:/orderhistory";
         }
 
         // 認証失敗

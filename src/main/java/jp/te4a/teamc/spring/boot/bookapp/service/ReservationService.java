@@ -2,6 +2,7 @@ package jp.te4a.teamc.spring.boot.bookapp.service;
 
 import jp.te4a.teamc.spring.boot.bookapp.bean.Reservation;
 import jp.te4a.teamc.spring.boot.bookapp.repository.ReservationRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +17,24 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    // 全予約一覧を取得
-    public List<Reservation> findAll() {
-        return reservationRepository.findAll();
+    // ステータス更新
+    public void updateStatus(String isbnCode, String status) {
+        Optional<Reservation> optional = reservationRepository.findByIsbnCode(isbnCode);
+        if (optional.isPresent()) {
+            Reservation r = optional.get();
+            r.setStatus(status);
+            reservationRepository.save(r);
+        }
     }
 
     // 承認処理
     public void approve(Map<String, String> params) {
-        // 例としてtitleとnameで予約を特定（本来はIDで検索するのが望ましい）
         String title = params.get("title");
         String name = params.get("name");
 
-        Optional<Reservation> optional = reservationRepository.findAll().stream()
+        List<Reservation> allReservations = reservationRepository.findAll();
+
+        Optional<Reservation> optional = allReservations.stream()
                 .filter(r -> r.getTitle().equals(title) && r.getName().equals(name))
                 .findFirst();
 
@@ -44,7 +51,9 @@ public class ReservationService {
         String title = params.get("title");
         String name = params.get("name");
 
-        Optional<Reservation> optional = reservationRepository.findAll().stream()
+        List<Reservation> allReservations = reservationRepository.findAll();
+
+        Optional<Reservation> optional = allReservations.stream()
                 .filter(r -> r.getTitle().equals(title) && r.getName().equals(name))
                 .findFirst();
 
@@ -53,5 +62,10 @@ public class ReservationService {
             reservation.setStatus("完了");
             reservationRepository.save(reservation);
         }
+    }
+
+    // 全予約一覧を取得
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
     }
 }

@@ -5,27 +5,14 @@
 <meta charset="UTF-8">
 <title>予約承認する</title>
 <link rel="stylesheet" href="/css/Reservation.css">
-<script>
-    function calculateAmountAndSubmit(form) {
-        const unitPrice = parseFloat(form.amountInput.value);
-        const count = parseInt(form.count.value);
-
-        if (!isNaN(unitPrice) && !isNaN(count)) {
-            form.amount.value = unitPrice * count;
-            form.submit();
-        } else {
-            alert("金額または冊数が無効です。");
-        }
-    }
-</script>
 </head>
 <header class="header">
-  <form action="/logout" method="get" style="display:inline;">
-    <button type="submit">ログアウト</button>
-    </from
 </header>
 
 <h2 class="ScreenTitle">予約承認画面</h2>
+
+<!-- エラーメッセージ表示 -->
+<p th:if="${errorMessage}" th:text="${errorMessage}" style="color:red"></p>
 
 <table>
     <tr>
@@ -46,15 +33,18 @@
   
   <!-- 変更可能な入力フォーム -->
   <!--<form method="get" action="orderhistory.html" id="approvalForm">-->
-    <form method="post" action="/reserveappro" id="approvalForm">
+    <form method="post" action="/reserveappro" id="approvalForm" onsubmit="return validateAndSubmit(this)">
 
+      <!-- CSRFトークン追加 -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    
     <table>
       <tr>
         <th class="Required" colspan="4">下記項目は必須入力です</th>
       </tr>
       <tr>
         <th>ISBNコード</th>
-        <td><input type="text" name="ISBNcode" /></td>
+        <td><input type="text" name="isbnCode" /></td>
       </tr>
       <tr>
         <th>書名(タイトル)</th>
@@ -78,12 +68,12 @@
     </table>
   
     <!-- hiddenで送信するフィールド -->
-    <input type="hidden" name="approvalDate" />
+    <input type="hidden" name="approvalDate" id="approvalDate" />
     <input type="hidden" name="amount" />
     <input type="hidden" name="approvalStatus" value="承認済み" />
   
-    <button type="button" onclick="calculateAmountAndSubmit(this.form)">承認する</button>
-    <button type="button" onclick="location.href='orderhistory.html'">注文履歴に戻る</button>
+    <button type="submit">承認する</button>
+    <button type="button" onclick="location.href='/orderhistory'">注文履歴に戻る</button>
   </form>
   
   <script>
@@ -105,6 +95,7 @@
             form.submit();
         } else {
             alert("金額または冊数が無効です。");
+            return false; // 無効 → 送信しない、そのまま画面
         }
     }
     </script>

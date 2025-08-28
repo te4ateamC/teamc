@@ -8,73 +8,74 @@
 </head>
 
 <body>
-    <form action="/logout" method="get" style="display:inline;">
+    <form action="/logout" method="post" style="display:inline;">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /><!--CSRF トークン-->
         <button type="submit">ログアウト</button>
     </form>
     <h2>注文履歴</h2>
     <div class="table-wrapper">
-    <table border="1">
-        <thead>
-            <tr>
-                <th class="col-title">書籍名</th>
-                <th class="col-publisher">出版社</th>
-                <th class="col-count">冊数</th>
-                <th class="col-name">名前</th>
-                <th class="col-tel">電話番号</th>
-                <th class="col-address">住所</th>
-                <th class="col-isbn">ISBNコード</th>
-                <th class="col-date">承認日</th>
-                <th class="col-amount">金額</th>
-                <th class="col-status">承認状況</th>
-                <th class="col-approve"></th>
-                <th class="col-complete">取引状況</th>
-                <th class="col-approve"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="reservation : ${reservationList}">
-                <td th:text="${reservation.title}">Java入門</td>
-                <td th:text="${reservation.publisher}">技術評論社</td>
-                <td th:text="${reservation.count}">3</td>
-                <td th:text="${reservation.name}">山田太郎</td>
-                <td th:text="${reservation.tel}">090-1234-5678</td>
-                <td th:text="${reservation.email}">yamada@example.com</td>
-                <td th:text="${reservation.ISBNcode}">9784774197151</td>
-                <td th:text="${reservation.approvalDate}">2025-07-22</td>
-                <td th:text="${reservation.amount}">6000</td>
-                <td th:text="${reservation.approvalStatus}">未承認</td>
-                <!-- 承認ボタン -->
-                <!--<td th:text="">取引未完了</td>-->
-                <td>
-                    <form action="/reserveappro" method="post">
-                        <input type="hidden" name="title" th:value="${reservation.title}" />
-                        <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
-                        <input type="hidden" name="count" th:value="${reservation.count}" />
-                        <input type="hidden" name="name" th:value="${reservation.name}" />
-                        <input type="hidden" name="ISBNcode" th:value="${reservation.ISBNcode}" />
-                        <input type="hidden" name="amount" th:value="${reservation.amount}" />
-                        <button type="submit">承認</button>
-                    </form>
-                </td>
-                <!-- 取引完了 -->
-                <td>
-                    <form action="/complete" method="post">
-                        <input type="hidden" name="title" th:value="${reservation.title}" />
-                        <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
-                        <input type="hidden" name="count" th:value="${reservation.count}" />
-                        <input type="hidden" name="name" th:value="${reservation.name}" />
-                        <input type="hidden" name="ISBNcode" th:value="${reservation.ISBNcode}" />
-                        <input type="hidden" name="approvalDate" th:value="${reservation.approvalDate}" />
-                        <input type="hidden" name="amount" th:value="${reservation.amount}" />
-                        <input type="hidden" name="approvalStatus" th:value="${reservation.approvalStatus}" />
-                        <input type="hidden" name="status" value="完了" />
-                        <button type="submit">完了</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th class="col-title">書籍名</th>
+                    <th class="col-publisher">出版社</th>
+                    <th class="col-count">冊数</th>
+                    <th class="col-name">名前</th>
+                    <th class="col-tel">電話番号</th>
+                    <th class="col-address">住所</th>
+                    <th class="col-isbn">ISBNコード</th>
+                    <th class="col-date">承認日</th>
+                    <th class="col-amount">金額</th>
+                    <th class="col-status">承認状況</th>
+                    <th class="col-approve">承認ボタン</th>
+                    <th class="col-complete">取引状況</th>
+                    <th class="col-approve"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reservation : ${reservationList}">
+                    <td th:text="${reservation.title}">Java入門</td>
+                    <td th:text="${reservation.publisher}">技術評論社</td>
+                    <td th:text="${reservation.count}">3</td>
+                    <td th:text="${reservation.name}">山田太郎</td>
+                    <td th:text="${reservation.tel}">090-1234-5678</td>
+                    <td th:text="${reservation.email}">yamada@example.com</td>
+                    <td th:text="${reservation.isbnCode}">9784774197151</td>
+                    <td th:text="${reservation.approvalDate}">2025-07-22</td>
+                    <td th:text="${reservation.amount}">6000</td>
+                    <td th:text="${reservation.approvalStatus}">未承認</td>
+                    <!-- 承認ボタン -->
+                    <!--<td th:text="">取引未完了</td>-->
+                    <td>
+                        <form action="/reserveappro" method="get">
+                            <input type="hidden" name="title" th:value="${reservation.title}" />
+                            <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
+                            <input type="hidden" name="count" th:value="${reservation.count}" />
+                            <input type="hidden" name="name" th:value="${reservation.name}" />
+                            <input type="hidden" name="isbnCode" th:value="${reservation.isbnCode}" />
+                            <input type="hidden" name="amount" th:value="${reservation.amount}" />
+                            <button type="submit">承認</button>
+                        </form>
+                    </td>
+                    <!-- 取引完了 -->
+                    <td>
+                        <form action="/complete" method="post">
+                            <input type="hidden" name="title" th:value="${reservation.title}" />
+                            <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
+                            <input type="hidden" name="count" th:value="${reservation.count}" />
+                            <input type="hidden" name="name" th:value="${reservation.name}" />
+                            <input type="hidden" name="isbnCode" th:value="${reservation.isbnCode}" />
+                            <input type="hidden" name="approvalDate" th:value="${reservation.approvalDate}" />
+                            <input type="hidden" name="amount" th:value="${reservation.amount}" />
+                            <input type="hidden" name="approvalStatus" th:value="${reservation.approvalStatus}" />
+                            <input type="hidden" name="status" value="完了" />
+                            <button type="submit">完了</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);

@@ -20,9 +20,17 @@ public class Reservation {
     private String name;
     private String tel;
     private String email;
-    private String ISBNcode;
+    private String isbnCode;
     private LocalDate approvalDate;
     private Integer amount;
     private String approvalStatus; // 例: "未承認", "承認済み"
     private String status;         // 例: "未完了", "完了"
+    
+    public String getIsbnCode() {
+        return isbnCode;
+    }
+
+    public void setIsbnCode(String isbnCode) {
+        this.isbnCode = isbnCode;
+    }
 }

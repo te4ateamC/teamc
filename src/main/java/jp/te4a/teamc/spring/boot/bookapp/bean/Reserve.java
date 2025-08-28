@@ -11,24 +11,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="bookreservation")
+@Table(name = "bookreservation")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reserve {
-    @Column(nullable=false)
+    @Column(nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // または AUTO
     private Integer id;
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String title;
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String publisher;
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Integer count;
-    @Column(nullable=false)
+    @Column
+    private String isbnCode;
+    @Column(nullable = false)
     private String name;
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String tel;
     private String address;
 }

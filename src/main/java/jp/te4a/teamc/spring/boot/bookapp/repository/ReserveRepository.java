@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 import jp.te4a.teamc.spring.boot.bookapp.bean.Reserve;
 
 @Repository
+public interface ReserveRepository extends JpaRepository<Reserve,Integer> {
 
-    public interface ReserveRepository extends JpaRepository<Reserve,Integer> {
+    @Query("SELECT r FROM Reserve r ORDER BY r.title")
+    List<Reserve> findAllOrderByTitle();
 
-        @Query("SELECT X FROM BookBean X ORDER BY X.title")
-        List<Reserve>findAllOrderByTitle();
-    }
+    // ISBNコードで検索するメソッドを追加
+    Reserve findByIsbnCode(String isbnCode);
+}
