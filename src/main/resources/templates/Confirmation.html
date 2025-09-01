@@ -1,43 +1,48 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>書籍予約確認</title>
-    <link rel="stylesheet" href="/css/Confirmation.css">
-</head>
-<body>
-    <h2>ご予約が完了しました！</h2>
-    <p>・ご予約内容の確認をメールで通知いたしました。</p>
-    <p>・後日、入荷した際に金額などの情報を通知いたします。</p>
+   
+   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   
+   <html>
 
-    <h2>ご予約内容</h2>
-    <table>
-        <tr>
-            <td>書籍名（タイトル）：</td>
-            <td th:text="${title}">タイトル</td>
-        </tr>
-        <tr>
-            <td>出版社名：</td>
-            <td th:text="${publisher}">出版社</td>
-        </tr>
-        <tr>
-            <td>冊数：</td>
-            <td th:text="${count}">1</td>
-        </tr>
-        <tr>
-            <td>お名前：</td>
-            <td th:text="${name}">お名前</td>
-        </tr>
-        <tr>
-            <td>電話番号：</td>
-            <td th:text="${tel}">電話番号</td>
-        </tr>
-        <tr>
-            <td>メールアドレス：</td>
-            <td th:text="${address}">example@example.com</td>
-        </tr>
-    </table>
+   <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <title>書籍予約確認</title>
+       <link rel="stylesheet" href="\new_08-28\src\main\resources\static\css\Confirmation.css">
+   </head>
 
-    <a href="/reservation">予約画面に戻る</a>
-</body>
-</html>
+   <body>
+       <h2 class="kanryou">ご予約が完了しました！</h2>
+       <p class="text">・ご予約内容の確認の連絡をSMSで通知いたしました。</p>
+       <p class="text">・後日、入荷した際に金額などの情報を通知いたします。</p>
+       <h2>ご予約内容</h2>
+       <form method="post" action="/post">
+           <table>
+               <tr>
+                   <td class="box1">書籍名（タイトル）※:</td>
+                   <td class="formbox"><input class="form1" type="text" name="title" /></td>
+               </tr>
+               <tr>
+                   <td class="box2">出版社名※：</td>
+                   <td claass="formbox"><input class="form2" type="text" name="publisher" /></td>
+               </tr>
+               <tr>
+                   <td class="box3">冊数※：</td>
+                   <td class="formbox"><input class="form3" type="text" name="count" /></td>
+               </tr>
+               <tr>
+                   <td class="box4">お名前※：</td>
+                   <td class="formbox"><input class="form4" type="text" name="name" /></td>
+               </tr>
+               <tr>
+                   <td class="box5">電話番号※:</td>
+                   <td class="formbox"><input class="form5" type="text" name="tel" /></td>
+               </tr>
+               <tr>
+                   <td class="box6">メールアドレス：</td>
+                   <td class="formbox"><input class="form6" type="text" name="address" /></td>
+               </tr>
+           </table>
+           <button class="clear"class="button" type="submit">予約画面に戻る</button>
+       </form>
+   </body>
+
+   </html>
