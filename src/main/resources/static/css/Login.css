@@ -56,3 +56,21 @@ body {
   justify-content: center;
   margin-top: 20px;
 }
+
+.bottom-link {
+  position: fixed;       /* 常に画面下に固定 */
+  bottom: 20px;          /* 下から20px */
+  left: 50%;             /* 横方向の中央 */
+  transform: translateX(-50%); /* きれいに中央寄せ */
+  margin: 0;
+  font-size: 24px;
+}
+
+.bottom-link a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.bottom-link a:hover {
+  text-decoration: underline;
+}
