@@ -29,7 +29,6 @@
                     <th class="col-status">承認状況</th>
                     <th class="col-approve">承認ボタン</th>
                     <th class="col-complete">取引状況</th>
-                    <th class="col-approve"></th>
                 </tr>
             </thead>
             <tbody>
@@ -106,14 +105,19 @@
         const completeButton = completeForm.querySelector("button[type='submit']");
 
         // 取引完了ボタンを押したとき
-        completeButton.addEventListener("click", function (e) {
-            e.preventDefault(); // デフォルト送信を止める
-            statusSpan.textContent = "受領済み";
-            completeButton.disabled = true;
+    completeButton.addEventListener("click", function (e) {
+    e.preventDefault(); // デフォルト送信を止める
+    statusSpan.textContent = "受領済み";
+    completeButton.disabled = true;
 
-            // 必要なら送信
-            completeForm.submit(); // 手動で送信
-        });
+    // 行全体を取得して "completed" クラスを付与
+    const row = completeForm.closest("tr");
+    row.classList.add("completed");
+
+    // 必要なら送信
+    completeForm.submit(); // 手動で送信
+});
+
     </script>
 </body>
 

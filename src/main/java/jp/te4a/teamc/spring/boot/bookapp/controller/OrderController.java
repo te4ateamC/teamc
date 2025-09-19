@@ -31,11 +31,22 @@ public class OrderController {
         return "reserveappro";
     }
 
-    // 取引完了ボタン押下時の処理
     @PostMapping("/complete")
-    public String complete(@RequestParam Map<String, String> params) {
-        reservationService.complete(params);
-        return "redirect:/orderhistory";
-    }
+public String completeReservation(
+        @RequestParam String title,
+        @RequestParam String publisher,
+        @RequestParam String count,
+        @RequestParam String name,
+        @RequestParam String isbnCode,
+        @RequestParam String approvalDate,
+        @RequestParam String amount,
+        @RequestParam String approvalStatus,
+        @RequestParam String status,
+        Model model) {
+
+
+    return "redirect:/orderHistory"; // 完了後に一覧へリダイレクト
+}
+
 
 }

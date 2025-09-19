@@ -153,3 +153,10 @@ input[type="hidden"] {
         overflow-x: auto;
     }
 }
+/* 完了した行を灰色にする */
+tr.completed {
+    background-color: #e0e0e0;
+    pointer-events: none; /* クリック不可にする */
+    opacity: 0.6; /* 半透明で無効感を出す */
+}
+
