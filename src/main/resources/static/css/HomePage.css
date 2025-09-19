@@ -1,0 +1,47 @@
+body {
+    background-color: #e6f8dc;
+    font-family: sans-serif;
+  }
+
+.bottom-link {
+    position: fixed;       /* 常に画面下に固定 */
+    bottom: 20px;          /* 下から20px */
+    left: 50%;             /* 横方向の中央 */
+    transform: translateX(-50%); /* きれいに中央寄せ */
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .bottom-link a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .bottom-link a:hover {
+    text-decoration: underline;
+  }
+
+.main{
+    color: chocolate;
+    position: absolute;
+    top: 0; /* 上端に配置 */
+    left: 50%; /* 水平方向の中央 */
+    transform: translateX(-50%); /* 中央揃えの補正 */
+    font-size: 50px;
+}
+
+.text1{
+  font-family: 'HG行書体', serif;
+  font-size: 40px;
+  display: grid;
+  place-items: center; /* 横・縦方向の中央寄せ */
+  height: 30vh;       /* 画面全体の高さ */
+}
+
+.text2{
+  font-family: 'HG行書体', serif;
+  font-size: 60px;
+  display: grid;
+  place-items: center; /* 横・縦方向の中央寄せ */
+  height: 30vh;       /* 画面全体の高さ */
+}

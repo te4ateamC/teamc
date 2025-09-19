@@ -37,13 +37,13 @@ public class SecurityConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/css/**", "/login", "/loginForm", "/orderhistory", "/reservation",
-                                "/confirmation", "/post", "/Confirmation.html")
+                                "/confirmation", "/post", "/Confirmation.html","/HomePage")
                         .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/loginForm")
                         .loginProcessingUrl("/login")
-                        .usernameParameter("user")
+                        .usernameParameter("username")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/orderhistory", true)
                         .failureUrl("/loginForm?error")

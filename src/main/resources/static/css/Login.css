@@ -1,50 +1,76 @@
-.Login {
-  font-size: 2rem;
-  background: orange;
-  border: 1px solid #ffa500;
-  margin: 2rem auto;
-  padding: 2rem;
-  width: 90%;
-  max-width: 500px;
-  display: block;
-  text-decoration: none;
-  color: black;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-  text-align: center;
+body {
+  background-color: #e6f8dc;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
- 
-.ユーザID,
-.パスワード {
-  font-size: clamp(0.5rem, 6vw, 80px);
+
+.login-box {
+  background-color: #f08d63;
+  padding: 140px;
+  border-radius: 50px;
+  color: white;
+  width: 500px;
+}
+
+.login-box h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
   display: block;
-  margin: 1.5rem auto 0.5rem;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.form-group input {
   width: 100%;
-  max-width: 500px;
-  text-align: left;
-  margin-right: 5rem;
-}
- 
-.ログイン画面 {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-top: 2rem;
-}
- 
-.textbox1,
-.textbox2 {
-  font-size: 7rem; /* ← 文字サイズを変更（例：2rem） */
-  margin: 0 auto 2rem; /* ← 修正：margin-left ではなく margin に */
-  display: block;
-  background-color: #D9D9D9;
+  padding: 15px;
+  font-size: 16px;
   border: none;
- 
-  width: 100%;        /* ← 横幅100% */
-  max-width: 50000px;   /* ← 最大横幅（これを変えると幅が変わる） */
-  width: 1000px;
-  max-height: 500px;
-  height: 110px;     /* ← 高さを明示的に指定（追加） */
- 
-  padding: 1rem;      /* ← 内側の余白（高さにも影響） */
-  box-sizing: border-box;
+  background-color: #dddddd;
+}
+
+.login-button {
+  margin-top: 20px;
+  background-color: #FFB357;
+  border: none;
+  padding: 20px 50px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.bottom-link {
+  position: fixed;       /* 常に画面下に固定 */
+  bottom: 20px;          /* 下から20px */
+  left: 50%;             /* 横方向の中央 */
+  transform: translateX(-50%); /* きれいに中央寄せ */
+  margin: 0;
+  font-size: 24px;
+}
+
+.bottom-link a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.bottom-link a:hover {
+  text-decoration: underline;
 }
