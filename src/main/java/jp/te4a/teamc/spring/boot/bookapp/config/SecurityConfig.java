@@ -44,6 +44,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .loginPage("/loginForm")
                         .loginProcessingUrl("/login")
                         .usernameParameter("username")
+                        .usernameParameter("username")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/orderhistory", true)
                         .failureUrl("/loginForm?error")

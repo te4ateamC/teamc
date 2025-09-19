@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Approval {
+public class approval {
     @Column(nullable=false)
     private String title;
     @Column(nullable=false)
