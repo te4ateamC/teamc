@@ -37,7 +37,7 @@ public class SecurityConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/css/**", "/login", "/loginForm", "/orderhistory", "/reservation",
-                                "/confirmation", "/post", "/Confirmation.html")
+                                "/Confirmation", "/post", "/Confirmation.html")
                         .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
