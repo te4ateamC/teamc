@@ -1,61 +1,64 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>書籍予約フォーム</title>
-    <script>
-        // クリアボタンでフォームをリセット
-        function clearForm() {
-            document.getElementById("reserveForm").reset();
-        }
-    </script>
-    <link rel="stylesheet" href="/css/BookReservation.css">
-</head>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <html>
 
-<body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>書籍予約フォーム</title>
+        <script>
+            // クリアボタンでフォームをリセット
+            function clearForm() {
+                document.getElementById("reserveForm").reset();
+            }
+        </script>
+        <link rel="stylesheet" href="css/BookReservation.css">
+    </head>
 
-    <h3>※がある項目は必須入力です</h3>
+    <body>
 
-    <form action="/post" method="post" id="reserveForm">
-        <!-- CSRFトークン -->
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <h3>※がある項目は必須入力です</h3>
 
-        <div class="form-row">
+        <form action="/post" method="post" id="reserveForm">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /><!--CSRF トークン-->
+          <div class="form-row">
             <label for="title">書名(タイトル)※</label>
             <input type="text" id="title" name="title" required>
-        </div>
-
-        <div class="form-row">
+          </div>
+      
+          <div class="form-row">
             <label for="publisher">出版社名※</label>
             <input type="text" id="publisher" name="publisher" required>
-        </div>
-
-        <div class="form-row">
-            <label for="count">冊数※</label>
-            <input type="number" id="count" name="count" required>
-        </div>
-
-        <div class="form-row">
+          </div>
+      
+          <div class="form-row">
+            <label for="copies">冊数※</label>
+            <input type="number" id="copies" name="copies" required>
+          </div>
+      
+          <div class="form-row">
             <label for="name">お名前※</label>
             <input type="text" id="name" name="name" required>
-        </div>
-
-        <div class="form-row">
-            <label for="tel">電話番号※</label>
-            <input type="tel" id="tel" name="tel" required>
-        </div>
-
-        <div class="form-row">
+          </div>
+      
+          <div class="form-row">
+            <label for="phone">電話番号※</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+      
+          <div class="form-row">
             <label for="email">メールアドレス（任意）</label>
             <input type="email" id="email" name="email">
-        </div>
-
-        <div class="button-row">
+          </div>
+      
+          <div class="button-row">
             <button type="submit" class="submit-btn">予約する</button>
             <button type="reset" class="reset-btn">入力内容をクリア</button>
-        </div>
-    </form>
-</body>
+          </div>
+          <a href="/HomePage">
+            <button type="button">ホームページに戻る</button>
+        </a>
+        </form>
+    </body>
 
-</html>
+
+    </html>

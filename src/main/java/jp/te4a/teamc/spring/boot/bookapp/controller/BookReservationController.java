@@ -41,6 +41,10 @@ public class BookReservationController {
 
         return "Confirmation";  // Confirmation.htmlへ
     }
-
+    @PostMapping("/back")
+    public String backToHome() {
+        return "redirect:/HomePage";  // ホームページにリダイレクト
+    }
+    
 }
 
