@@ -22,10 +22,11 @@
       <th class="namedisplay">名前</th>
     </tr>
     <tr>
-      <td id="title" class="data-cell"></td>
-      <td id="publisher" class="data-cell"></td>
-      <td id="count" class="data-cell"></td>
-      <td id="name" class="data-cell"></td>
+      <td id="title" class="data-cell" th:text="${title}"></td>
+      <td id="publisher" class="data-cell" th:text="${publisher}"></td>
+      <td id="count" class="data-cell" th:text="${count}"></td>
+      <td id="name" class="data-cell" th:text="${name}"></td>
+
     </tr>
   </table>
   
@@ -92,7 +93,8 @@
             document.getElementById("approvalDate").value = `${yyyy}-${mm}-${dd}`;
     
             // フォーム送信
-            form.submit();
+            //form.submit();
+            return true;
         } else {
             alert("金額または冊数が無効です。");
             return false; // 無効 → 送信しない、そのまま画面

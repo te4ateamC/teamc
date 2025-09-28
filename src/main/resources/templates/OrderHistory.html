@@ -22,7 +22,7 @@
                     <th class="col-count">冊数</th>
                     <th class="col-name">名前</th>
                     <th class="col-tel">電話番号</th>
-                    <th class="col-address">住所</th>
+                    <th class="col-address">email</th>
                     <th class="col-isbn">ISBNコード</th>
                     <th class="col-date">承認日</th>
                     <th class="col-amount">金額</th>
@@ -33,32 +33,36 @@
             </thead>
             <tbody>
                 <tr th:each="reservation : ${reservationList}">
-                    <td th:text="${reservation.title}">Java入門</td>
-                    <td th:text="${reservation.publisher}">技術評論社</td>
-                    <td th:text="${reservation.count}">3</td>
-                    <td th:text="${reservation.name}">山田太郎</td>
-                    <td th:text="${reservation.tel}">090-1234-5678</td>
-                    <td th:text="${reservation.email}">yamada@example.com</td>
-                    <td th:text="${reservation.isbnCode}">9784774197151</td>
-                    <td th:text="${reservation.approvalDate}">2025-07-22</td>
-                    <td th:text="${reservation.amount}">6000</td>
-                    <td th:text="${reservation.approvalStatus}">未承認</td>
+                    <td th:text="${reservation.title}"></td>
+                    <td th:text="${reservation.publisher}"></td>
+                    <td th:text="${reservation.count}"></td>
+                    <td th:text="${reservation.name}"></td>
+                    <td th:text="${reservation.tel}"></td>
+                    <td th:text="${reservation.email}"></td>
+                    <td th:text="${reservation.isbnCode} ?: ''"></td>
+                    <td th:text="${reservation.approvalDate} ?: '未承認'"></td>
+                    <td th:text="${reservation.amount} ?: '未入力'"></td>
+                    <td id="approvalStatus" th:text="${reservation.approvalStatus} ?: '未承認'"></td>
+                    
                     <!-- 承認ボタン -->
                     <!--<td th:text="">取引未完了</td>-->
                     <td>
-                        <form action="/reserveappro" method="get">
+                        <form action="/reserveappro" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                             <input type="hidden" name="title" th:value="${reservation.title}" />
                             <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
                             <input type="hidden" name="count" th:value="${reservation.count}" />
                             <input type="hidden" name="name" th:value="${reservation.name}" />
-                            <input type="hidden" name="isbnCode" th:value="${reservation.isbnCode}" />
-                            <input type="hidden" name="amount" th:value="${reservation.amount}" />
+                            
                             <button type="submit">承認</button>
                         </form>
+                        
                     </td>
-                    <!-- 取引完了 -->
+                
+                    <!-- 取引完了ボタン -->
                     <td>
                         <form action="/complete" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                             <input type="hidden" name="title" th:value="${reservation.title}" />
                             <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
                             <input type="hidden" name="count" th:value="${reservation.count}" />
@@ -70,6 +74,7 @@
                             <input type="hidden" name="status" value="完了" />
                             <button type="submit">完了</button>
                         </form>
+                        
                     </td>
                 </tr>
             </tbody>

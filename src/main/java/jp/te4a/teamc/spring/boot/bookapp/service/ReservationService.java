@@ -29,6 +29,7 @@ public class ReservationService {
 
     // 承認処理
     public void approve(Map<String, String> params) {
+
         String title = params.get("title");
         String name = params.get("name");
 
@@ -37,12 +38,18 @@ public class ReservationService {
         Optional<Reservation> optional = allReservations.stream()
                 .filter(r -> r.getTitle().equals(title) && r.getName().equals(name))
                 .findFirst();
-
+                
+                
+        System.out.println("デバッグ用");
+        
         if (optional.isPresent()) {
             Reservation reservation = optional.get();
-            reservation.setApprovalStatus("承認済み");
+            reservation.setIsbnCode(null);
+            reservation.setAmount(null);
+            reservation.setApprovalStatus("未承認");
             reservation.setApprovalDate(LocalDate.now());
             reservationRepository.save(reservation);
+            //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         }
     }
 

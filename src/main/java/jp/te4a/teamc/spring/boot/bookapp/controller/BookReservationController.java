@@ -25,6 +25,7 @@ public class BookReservationController {
         @RequestParam String count,
         @RequestParam String name,
         @RequestParam String tel,
+        @RequestParam String email,
         @RequestParam(required = false) String address,
         Model model
     ) {
@@ -34,10 +35,10 @@ public class BookReservationController {
         model.addAttribute("count", count);
         model.addAttribute("name", name);
         model.addAttribute("tel", tel);
-        model.addAttribute("address", address);
+        model.addAttribute("email", email);
 
         // Serviceに予約処理を任せる
-        reservationService.reserve(title, publisher, count, name, tel, address);
+        reservationService.reserve(title, publisher, count, name, tel, email);
 
         return "Confirmation";  // Confirmation.htmlへ
     }

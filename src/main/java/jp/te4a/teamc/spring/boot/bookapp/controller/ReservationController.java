@@ -14,63 +14,63 @@ import java.util.Map;
 
 import jp.te4a.teamc.spring.boot.bookapp.service.ReservationService;
 import jp.te4a.teamc.spring.boot.bookapp.bean.Reservation;
+import jp.te4a.teamc.spring.boot.bookapp.repository.ReservationRepository;
 
 @Controller
 public class ReservationController {
 
+    @Autowired
+    private ReservationRepository reservationRepository;
+    @Autowired
+    private ReservationService reservationService;
+
+
     @GetMapping("/orderhistory")
     public String showOrderHistory(Model model) {
-        List<Reservation> reservationList = new ArrayList<>();
+        // DBから全部取得
+        var reservationList = reservationRepository.findAll();
 
-        Reservation sample1 = new Reservation();
-        sample1.setTitle("Java入門");
-        sample1.setPublisher("技術評論社");
-        sample1.setCount(3);
-        sample1.setName("山田太郎");
-        sample1.setTel("090-1234-5678");
-        sample1.setEmail("yamada@example.com");
-        sample1.setIsbnCode("9784774197151");
-        sample1.setApprovalDate(LocalDate.now());
-        sample1.setAmount(6000);
-        sample1.setApprovalStatus("未承認");
-        sample1.setStatus("未完了");
-
-        Reservation sample2 = new Reservation();
-        sample2.setTitle("HTML入門");
-        sample2.setPublisher("技術評論社");
-        sample2.setCount(2);
-        sample2.setName("山田花子");
-        sample2.setTel("090-5678-1234");
-        sample2.setEmail("hanako@example.com");
-        sample2.setIsbnCode("1597648312548");
-        sample2.setApprovalDate(LocalDate.now());
-        sample2.setAmount(4000);
-        sample2.setApprovalStatus("未承認");
-        sample2.setStatus("未完了");
-
-        reservationList.add(sample1);
-        reservationList.add(sample2);
-
+        // モデルに渡す
         model.addAttribute("reservationList", reservationList);
-        return "OrderHistory"; // orderReception.html を返す
+        return "OrderHistory"; 
     }
 
     @PostMapping("/reserveappro")
-public String processApproval(@RequestParam Map<String, String> params, Model model) {
-    try {
-        // 金額チェック
-        String amountStr = params.get("amountInput");
-        if (amountStr == null || amountStr.isEmpty()) {
-            model.addAttribute("errorMessage", "金額は必須です");
-            return "reserveappro"; // テンプレート名に合わせる
-        }
-        double amount = Double.parseDouble(amountStr);
-        if (amount <= 0) {
-            model.addAttribute("errorMessage", "金額は正の値でなければなりません");
+    public String processApproval(@RequestParam Map<String, String> params, Model model) {
+        // 画面表示用データ
+        model.addAttribute("title", params.get("title"));
+        model.addAttribute("publisher", params.get("publisher"));
+        model.addAttribute("count", params.get("count"));
+        model.addAttribute("name", params.get("name"));
+    
+        String amountStr = params.get("amount");
+    
+        // 承認処理用フラグを追加（JSで送る hidden）
+        String submitFlag = params.get("submit"); // 例えば hidden name="submit" value="true"
+    
+        if (submitFlag == null) {
+            // 画面表示だけ → エラーは出さない
             return "reserveappro";
         }
-
-        // 冊数チェック（もし必要なら）
+    
+        // 金額チェック
+        if (amountStr == null || amountStr.isEmpty()) {
+            model.addAttribute("errorMessage", "金額は必須です");
+            return "reserveappro";
+        }
+    
+        try {
+            double amount = Double.parseDouble(amountStr);
+            if (amount <= 0) {
+                model.addAttribute("errorMessage", "金額は正の値でなければなりません");
+                return "reserveappro";
+            }
+        } catch (NumberFormatException e) {
+            model.addAttribute("errorMessage", "金額の形式が不正です");
+            return "reserveappro";
+        }
+    
+        // 冊数チェック（必要なら）
         String countStr = params.get("count");
         if (countStr != null) {
             try {
@@ -84,17 +84,11 @@ public String processApproval(@RequestParam Map<String, String> params, Model mo
                 return "reserveappro";
             }
         }
-
-        // ★正常処理（DB更新など）
-        // reservationService.approve(params);
-
+    
+        // DB更新など
+        reservationService.approve(params);
+    
         return "redirect:/orderhistory";
-
-    } catch (NumberFormatException e) {
-        model.addAttribute("errorMessage", "金額の形式が不正です");
-        return "reserveappro";
     }
-}
-
-
+    
 }

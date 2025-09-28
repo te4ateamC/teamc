@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import jp.te4a.teamc.spring.boot.bookapp.bean.Reservation;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
+public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
     // ISBNコードで検索
     Optional<Reservation> findByIsbnCode(String isbnCode);

@@ -1,4 +1,4 @@
-package jp.te4a.teamc.spring.boot.bookapp.repository;
+/*package jp.te4a.teamc.spring.boot.bookapp.repository;
 
 import java.util.List;
 
@@ -18,3 +18,4 @@ public interface ReserveRepository extends JpaRepository<Reserve,Integer> {
     // ISBNコードで検索するメソッドを追加
     Reserve findByIsbnCode(String isbnCode);
 }
+    */

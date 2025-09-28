@@ -1,4 +1,4 @@
-package jp.te4a.teamc.spring.boot.bookapp.bean;
+/*package jp.te4a.teamc.spring.boot.bookapp.bean;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +30,7 @@ public class Reserve {
     private String isbnCode;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String tel;
     private String address;
+    private String email;
 }
+*/

@@ -14,5 +14,7 @@ import jp.te4a.teamc.spring.boot.bookapp.bean.OrderBean;
     public interface BookRepository extends JpaRepository<OrderBean,String> {
 
         @Query("SELECT X FROM OrderBean X ORDER BY X.title")
+        
+        
         List<OrderBean>findAllByOrderByTitleAsc();
     }
