@@ -61,69 +61,24 @@
                 
                     <!-- 取引完了ボタン -->
                     <td>
-                        <form action="/complete" method="post">
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                            <input type="hidden" name="title" th:value="${reservation.title}" />
-                            <input type="hidden" name="publisher" th:value="${reservation.publisher}" />
-                            <input type="hidden" name="count" th:value="${reservation.count}" />
-                            <input type="hidden" name="name" th:value="${reservation.name}" />
-                            <input type="hidden" name="isbnCode" th:value="${reservation.isbnCode}" />
-                            <input type="hidden" name="approvalDate" th:value="${reservation.approvalDate}" />
-                            <input type="hidden" name="amount" th:value="${reservation.amount}" />
-                            <input type="hidden" name="approvalStatus" th:value="${reservation.approvalStatus}" />
-                            <input type="hidden" name="status" value="完了" />
-                            <button type="submit">完了</button>
-                        </form>
+
+                        <button onclick="document.getElementById('trcom').showModal()">取引完了</button>
+                        <dialog id = "trcom">
+                        <h5>取引を本当に確定してよろしいですか？</h5>
                         
+                          <form action="/complete" method="post">
+                            <button type="submit">完了</button>
+                          </form>
+
+                          <form method = "dialog">
+                            <button>キャンセル</button>
+                          </form>
+                        </dialog>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-
-            // "承認状況" が送られてきていたら表示を変更
-            const approvalStatus = urlParams.get("approvalStatus");
-            const approvalDate = urlParams.get("approvalDate");
-            const amount = urlParams.get("amount");
-
-            if (approvalStatus) {
-                document.getElementById("approvalStatus").textContent = approvalStatus;
-            }
-            if (approvalDate) {
-                document.getElementById("approvalDate").textContent = approvalDate;
-            }
-            if (amount) {
-                document.getElementById("amount").textContent = amount;
-            }
-        });
-
-        const approvalStatus = document.getElementById("approvalStatus"); // 承認状況セル
-        const statusSpan = document.getElementById("status"); // 受領状況表示（取引完了）
-
-        const approveForm = document.querySelector("form[action='/reserveappro']");
-
-
-        const completeForm = document.querySelectorAll("form")[2]; // 取引完了のform（3番目のform）
-        const completeButton = completeForm.querySelector("button[type='submit']");
-
-        // 取引完了ボタンを押したとき
-    completeButton.addEventListener("click", function (e) {
-    e.preventDefault(); // デフォルト送信を止める
-    statusSpan.textContent = "受領済み";
-    completeButton.disabled = true;
-
-    // 行全体を取得して "completed" クラスを付与
-    const row = completeForm.closest("tr");
-    row.classList.add("completed");
-
-    // 必要なら送信
-    completeForm.submit(); // 手動で送信
-});
-
-    </script>
 </body>
 
 </html>

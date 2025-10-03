@@ -1,71 +1,252 @@
+body{
+  background-color: #E2F6D6;
+  padding-bottom: 500px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+
+}
+.kanryou{
+  font-size: 36px;
+}
+.text {
+  background-color: #FE7958;
+  color: white;
+  margin-bottom: 20px; /* テキストの下に余白を追加 */
+  font-size: 20px;
+
+  margin-bottom: 20px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  box-sizing: border-box;
+
+}
+
+.box1, .box2, .box3, .box4, .box5, .box6 {
+  color: #0d0dff;
+  color: #2c2c2f;
+  background: #D1E5FD; /* 背景色 */
+  font-size: 24px !important;
+  font-weight:bolder;
+  padding: 20px; /* 内側の余白を調整 */
+
+  max-width: 500px; /* 最大幅 */
+  min-width: 300px; /* 最小幅 */
+  width: 100%; /* 親要素に合わせる */
+  height: 35px;
+   box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* 影を追加 */
+  border-radius: 10px;
+}
+.box1 {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  top: 10px;
+  right: 10px;
+}
+.box2 {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  top: 30px;
+  right: 10px;
+}
+.box3 {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  top: 50px;
+  right: 10px;
+}
+.box4 {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  top: 80px;
+  right: 10px;
+}
+.box5 {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  top: 100px;
+  right: 10px;
+}
+.box6 {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  top: 120px;
+  right: 10px;
+}
+
+
+
+.form1, .form2, .form3, .form4, .form5, .form6 {
+  max-width: 500px; /* 最大幅 */
+  min-width: 300px; /* 最小幅 */
+  width: 100%; /* 親要素に合わせる */
+  height: 35px;
+  font-size: 18px;
+  background-color: #c2c4c7;
+}
+.form1{
+  position: relative; /* 今の位置を基準 */
+  top: 25px;
+ 
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px; /* ボックス同士の間隔を広げる */
+  color: #2c2c2f;
+  font-size: 15;
+}
+
+.form2{
+  position: relative; /* 今の位置を基準 */
+  top: 45px;
+ 
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px; /* ボックス同士の間隔を広げる */
+  color: #2c2c2f;
+  font-size: 15;
+}
+
+.form3{
+  position: relative; /* 今の位置を基準 */
+  top: 65px;
+  padding-top: 20px;
+  padding-bottom: 20px;;  
+  margin-bottom: 30px; /* ボックス同士の間隔を広げる */
+  color: #2c2c2f;
+  font-size: 15;
+}
+
+.form4{
+  position: relative; /* 今の位置を基準 */
+  top: 95px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px; /* ボックス同士の間隔を広げる */
+  color: #2c2c2f;
+  font-size: 15;
+}
+
+.form5{
+  position: relative; /* 今の位置を基準 */
+  top: 115px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px; /* ボックス同士の間隔を広げる */
+  color: #2c2c2f;
+  font-size: 15;
+}
+
+.form6{
+  position: relative; /* 今の位置を基準 */
+  top: 135px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  margin-bottom: 30px; /* ボックス同士の間隔を広げる */
+  color: #2c2c2f;
+  font-size: 15;
+}
+/* PC画面（768px以上） */
+@media (min-width: 769px) {
+
+
+.clear {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  top: 200px;
+  left: 200px;
+  bottom: 20px; /* 下端から20pxの余白 */
+  color: #2c2c2f;
+  background: #c2c4c7; /* 背景色 */
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 240px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* 影を追加 */
+}
+}
+
+
+/* スマートフォン向け（幅768px以下） */
+@media (max-width: 768px) {
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #e9f7e9;
-    padding: 40px;
-    text-align: center;
-    color: #333;
-  }
- 
-  .container {
-    background-color: #e9f7e9;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
- 
-  h2 {
-    color: #000;
-  }
- 
-  .notice {
-    color: red;
-    font-size: 0.95em;
-    margin-bottom: 20px;
-  }
- 
-  form {
-    text-align: left;
-  }
- 
-  .form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
- 
-  label {
-    width: 150px;
-    background-color: #d1e5f6;
-    padding: 8px;
-    margin-right: 10px;
-    font-weight: bold;
-    border-radius: 4px;
-  }
- 
-  input[type="text"],
-  input[type="email"] {
-    flex: 1;
-    padding: 8px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
- 
-  button {
-    display: block;
-    margin: 30px auto 0;
-    padding: 12px 30px;
-    font-size: 1.1em;
-    background-color: #ccc;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
- 
-  button:hover {
-    background-color: #bbb;
-  }
- 
- 
+  padding-bottom: 100px; /* 下部の余白を調整 */
+}
+
+.form1 input, .form2 input, .form3 input, .form4 input, .form5 input, .form6 input {
+  width: 90%; /* 親要素の90%の幅に設定 */
+  margin-left: auto; /* 左右中央揃え */
+  display: block; /* ブロック要素にする */
+}
+
+td {
+  display: block;
+  width: 100%; /* 幅を画面いっぱいに */
+  text-align: left; /* 左揃え */
+  margin-bottom: 10px; /* セル間の余白 */
+}
+
+/* ボタンを横並びにするための親コンテナ */
+
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* 左寄せに変更 */
+  flex-direction: column; /* 縦並びにしたい場合はこれを追加 */
+  align-items: flex-start; /* 左寄せ */
+  width: 100%;
+  margin: 30px 0;
+  padding: 0;
+  gap: 0; /* ボタン間のスペースをなくす */
+}
+
+.yoyaku, .clear {
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+  width: auto; /* 必要に応じて幅を調整 */
+  margin: 0; /* 余白を完全に削除 */
+}
+
+
+
+.clear {
+  position: relative; /* 今の位置を基準 */
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  top: 200px;
+  left: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  background: #c2c4c7; /* 背景色 */
+  color: #2c2c2f;
+   box-shadow: 0 4px 12px rgba(0,0,0,2.10); /* 影を追加 */
+}
+
+}
+
+
+
+/* ラベルのスタイル */
+td.box1, td.box2, td.box3, td.box4, td.box5, td.box6 {
+padding-right: 10px;
+font-size: 16px;
+color: #2c2c2f;
+}
