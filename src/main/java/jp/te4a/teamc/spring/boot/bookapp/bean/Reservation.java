@@ -25,6 +25,8 @@ public class Reservation {
     private Integer amount;
     private String approvalStatus; // 例: "未承認", "承認済み"
     private String status;         // 例: "未完了", "完了"
+
+    private boolean completed = false;
     
     public String getIsbnCode() {
         return isbnCode;

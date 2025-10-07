@@ -241,6 +241,25 @@ td {
 }
 
 }
+a.button {
+  display: inline-block;
+  margin-top: 160px; /* ← 下にスペース */
+  padding: 15px 30px;
+  background-color: #f5f5f5;
+  color: #2c2c2f;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+a.button:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
 
 
 

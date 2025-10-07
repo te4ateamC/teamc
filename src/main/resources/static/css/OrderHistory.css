@@ -160,3 +160,12 @@ tr.completed {
     opacity: 0.6; /* 半透明で無効感を出す */
 }
 
+.completed-btn {
+    background-color: #ccc;
+    color: #666;
+    pointer-events: none; /* 押せなくする */
+}
+tr.completed {
+    background-color: #eee;
+    color: #888;
+}

@@ -10,7 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Map;
 
+import jp.te4a.teamc.spring.boot.bookapp.bean.Reservation;
 import jp.te4a.teamc.spring.boot.bookapp.service.ReservationService;
+import jp.te4a.teamc.spring.boot.bookapp.service.reservationRepository;
 
 @Controller
 public class OrderController {
@@ -32,21 +34,9 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-public String completeReservation(
-        @RequestParam String title,
-        @RequestParam String publisher,
-        @RequestParam String count,
-        @RequestParam String name,
-        @RequestParam String isbnCode,
-        @RequestParam String approvalDate,
-        @RequestParam String amount,
-        @RequestParam String approvalStatus,
-        @RequestParam String status,
-        Model model) {
-
-
-    return "redirect:/orderHistory"; // 完了後に一覧へリダイレクト
-}
-
+    public String complete(@RequestParam("id") Long id) {
+        reservationService.complete(id);
+        return "redirect:/orderhistory";
+    }
 
 }

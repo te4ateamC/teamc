@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    // ステータス更新
+    // ステータス更新（任意利用）
     public void updateStatus(String isbnCode, String status) {
         Optional<Reservation> optional = reservationRepository.findByIsbnCode(isbnCode);
         if (optional.isPresent()) {
@@ -29,50 +30,41 @@ public class ReservationService {
 
     // 承認処理
     public void approve(Map<String, String> params) {
-
         String title = params.get("title");
         String name = params.get("name");
+        String isbnCode = params.get("isbnCode");
+        String amountStr = params.get("amount");
 
         List<Reservation> allReservations = reservationRepository.findAll();
 
         Optional<Reservation> optional = allReservations.stream()
                 .filter(r -> r.getTitle().equals(title) && r.getName().equals(name))
                 .findFirst();
-                
-                
-        System.out.println("デバッグ用");
-        
+
         if (optional.isPresent()) {
             Reservation reservation = optional.get();
-            reservation.setIsbnCode(null);
-            reservation.setAmount(null);
-            reservation.setApprovalStatus("未承認");
+            reservation.setIsbnCode(isbnCode);
+            reservation.setAmount(Integer.parseInt(amountStr));
+            reservation.setApprovalStatus("承認済み");
             reservation.setApprovalDate(LocalDate.now());
             reservationRepository.save(reservation);
-            //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        } else {
+            throw new RuntimeException("予約が見つかりません: " + title + ", " + name);
         }
     }
 
     // 取引完了処理
-    public void complete(Map<String, String> params) {
-        String title = params.get("title");
-        String name = params.get("name");
-
-        List<Reservation> allReservations = reservationRepository.findAll();
-
-        Optional<Reservation> optional = allReservations.stream()
-                .filter(r -> r.getTitle().equals(title) && r.getName().equals(name))
-                .findFirst();
-
-        if (optional.isPresent()) {
-            Reservation reservation = optional.get();
-            reservation.setStatus("完了");
-            reservationRepository.save(reservation);
-        }
+    public void complete(Long id) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("予約が存在しません: " + id));
+        reservation.setCompleted(true); // 完了フラグをON
+        reservationRepository.save(reservation);
     }
 
-    // 全予約一覧を取得
     public List<Reservation> findAll() {
-        return reservationRepository.findAll();
+        // 完了してないもの → 完了したもの の順で並べて返す
+        List<Reservation> all = reservationRepository.findAll();
+        all.sort(Comparator.comparing(Reservation::isCompleted));
+        return all;
     }
 }

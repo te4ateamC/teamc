@@ -65,3 +65,15 @@ body {
     background-color: #dcdcdc;
     color: black;
   }
+
+  .back-btn {
+    margin-top: 40px; /* ← 好きなだけ下に移動できる */
+    background-color: #f5f5f5;
+    color: #2c2c2f;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }

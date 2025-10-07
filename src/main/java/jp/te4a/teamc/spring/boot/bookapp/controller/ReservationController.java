@@ -24,7 +24,6 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
-
     @GetMapping("/orderhistory")
     public String showOrderHistory(Model model) {
         // DBから全部取得
@@ -32,63 +31,53 @@ public class ReservationController {
 
         // モデルに渡す
         model.addAttribute("reservationList", reservationList);
-        return "OrderHistory"; 
+        return "OrderHistory";
     }
 
     @PostMapping("/reserveappro")
-    public String processApproval(@RequestParam Map<String, String> params, Model model) {
-        // 画面表示用データ
+    public String showApprovalForm(@RequestParam Map<String, String> params, Model model) {
+        // OrderHistoryから渡されたデータを承認画面に渡す
         model.addAttribute("title", params.get("title"));
         model.addAttribute("publisher", params.get("publisher"));
         model.addAttribute("count", params.get("count"));
         model.addAttribute("name", params.get("name"));
-    
+        return "reserveappro"; // 承認画面へ
+    }
+
+    @PostMapping("/reserveappro/confirm")
+    public String confirmApproval(@RequestParam Map<String, String> params, Model model) {
+        // 入力チェック
+        String isbn = params.get("isbnCode");
         String amountStr = params.get("amount");
-    
-        // 承認処理用フラグを追加（JSで送る hidden）
-        String submitFlag = params.get("submit"); // 例えば hidden name="submit" value="true"
-    
-        if (submitFlag == null) {
-            // 画面表示だけ → エラーは出さない
+
+        model.addAttribute("isbnCode", params.get("isbnCode"));
+        model.addAttribute("amount", params.get("amount"));
+
+        if (isbn == null || isbn.isBlank()) {
+            model.addAttribute("errorMessage", "ISBNコードは必須です");
             return "reserveappro";
         }
-    
-        // 金額チェック
-        if (amountStr == null || amountStr.isEmpty()) {
+        if (amountStr == null || amountStr.isBlank()) {
             model.addAttribute("errorMessage", "金額は必須です");
             return "reserveappro";
         }
-    
+
         try {
-            double amount = Double.parseDouble(amountStr);
+            int amount = Integer.parseInt(amountStr);
             if (amount <= 0) {
-                model.addAttribute("errorMessage", "金額は正の値でなければなりません");
+                model.addAttribute("errorMessage", "金額は正の値を入力してください");
                 return "reserveappro";
             }
         } catch (NumberFormatException e) {
             model.addAttribute("errorMessage", "金額の形式が不正です");
             return "reserveappro";
         }
-    
-        // 冊数チェック（必要なら）
-        String countStr = params.get("count");
-        if (countStr != null) {
-            try {
-                int count = Integer.parseInt(countStr);
-                if (count <= 0) {
-                    model.addAttribute("errorMessage", "冊数は正の整数でなければなりません");
-                    return "reserveappro";
-                }
-            } catch (NumberFormatException e) {
-                model.addAttribute("errorMessage", "冊数の形式が不正です");
-                return "reserveappro";
-            }
-        }
-    
-        // DB更新など
+
+        // DB更新
         reservationService.approve(params);
-    
+
+        // 承認後は注文履歴へリダイレクト
         return "redirect:/orderhistory";
     }
-    
+
 }

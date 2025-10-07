@@ -6,38 +6,33 @@
     <link rel="stylesheet" href="/css/Confirmation.css">
 </head>
 <body>
-    <h2>ご予約が完了しました！</h2>
-    <p>・ご予約内容の確認をメールで通知いたしました。</p>
-    <p>・後日、入荷した際に金額などの情報を通知いたします。</p>
+    <h2 class="kanryou">ご予約が完了しました！</h2>
+    <p class="text">・ご予約内容の確認をメールで通知いたしました。</p>
+    <p class="text">・後日、入荷した際に金額などの情報を通知いたします。</p>
 
     <h2>ご予約内容</h2>
     <table>
         <tr>
-            <td>書籍名（タイトル）：</td>
-            <td th:text="${title}">タイトル</td>
+          <td class="box1">書籍名（タイトル）： <span th:text="${title}">サンプルタイトル</span></td>
         </tr>
         <tr>
-            <td>出版社名：</td>
-            <td th:text="${publisher}">出版社</td>
+          <td class="box2">出版社名： <span th:text="${publisher}">〇〇出版</span></td>
         </tr>
         <tr>
-            <td>冊数：</td>
-            <td th:text="${count}">1</td>
+          <td class="box3">冊数： <span th:text="${count}">2</span></td>
         </tr>
         <tr>
-            <td>お名前：</td>
-            <td th:text="${name}">お名前</td>
+          <td class="box4">お名前： <span th:text="${name}">山田 太郎</span></td>
         </tr>
         <tr>
-            <td>電話番号：</td>
-            <td th:text="${tel}">電話番号</td>
+          <td class="box5">電話番号： <span th:text="${tel}">090-1234-5678</span></td>
         </tr>
         <tr>
-            <td>メールアドレス：</td>
-            <td th:text="${email}">example@example.com</td>
+          <td class="box6">メールアドレス： <span th:text="${email}">example@example.com</span></td>
         </tr>
-    </table>
+      </table>
+      
 
-    <a href="/reservation">予約画面に戻る</a>
+    <a class="button" href="/reservation">予約画面に戻る</a>
 </body>
 </html>
